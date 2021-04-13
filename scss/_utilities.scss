@@ -85,8 +85,17 @@
 .w-300 {
     width: 300px;
 }
+
 .min-w-60 {
     min-width: 60px;
+}
+
+.min-w-150 {
+    min-width: 150px;
+}
+
+.w-150 {
+    width: 150px;
 }
 
 /*Borders*/
@@ -112,6 +121,12 @@ hr {
 .border-hr, .border-hr-lg {
     border: 3px solid $primary;
     border-radius: $border-radius;
+}
+
+@each $color, $value in $colors {
+    .border-#{$color} {
+        border-color: $value !important;
+    }
 }
 
 /*Container Text Size*/
@@ -149,6 +164,13 @@ hr {
 /*Dark/Light mode images*/
 .d-dark-mode {
     display: none;
+}
+
+/*Box Shadow*/ 
+@each $color, $value in $colors {
+    .box-shadow-#{$color} {
+        box-shadow: 0 0 0 0.25rem rgba($value, 0.25) !important;
+    }
 }
 
 @media (prefers-color-scheme: dark) {

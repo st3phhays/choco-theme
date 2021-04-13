@@ -27,6 +27,11 @@ blockquote, .callout {
     }
 }
 
+.callout-outline {
+    box-shadow: unset;
+    outline: 1px solid var(--border);
+}
+
 @media (prefers-color-scheme: dark) {
     :root:not([data-user-color-scheme]) {
         blockquote, .callout {

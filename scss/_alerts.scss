@@ -7,46 +7,48 @@
     width: 100%;
 }
 
-@each $color, $value in $theme-colors {
-    .alert-#{$color} {
+.alert-primary, .alert-success, .alert-danger, .alert.bg-blue, .alert.bg-green, .alert.bg-red {
+    * {
+        color: $white;
+        color: var(--background);
+
         a {
-            font-weight: bold;
-
-            &:hover {
-                text-decoration: underline;
-            }
-        }
-        .btn-close {
-            text-shadow: none;
+            color: $white;
+            color: var(--background);
         }
     }
 }
 
-.alert-primary, .alert-success, .alert-danger {
-    color: $white;
-    color: var(--background);
-
-    a {
-        color: $white;
-        color: var(--background);
-    }
-}
-
-.alert-warning {
-    color: $gray-900;
-    color: var(--background);
-
-    a {
+.alert-warning, .alert.bg-yellow, .alert.bg-orange {
+    * {
         color: $gray-900;
-        color: var(--background);
+
+        a {
+            color: $gray-900;
+        }
     }
 }
 
-.alert-secondary {
-    color: $white;
-
-    a {
+.alert-secondary, .alert.bg-purple, .alert.bg-gray {
+    * {
         color: $white;
+
+        a {
+            color: $white;
+        }
+    }
+}
+
+.alert {
+    a {
+        font-weight: bold;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    .btn-close {
+        text-shadow: none;
     }
 }
 
@@ -68,6 +70,10 @@
         margin-top: $spacer;
         width: 100%;
     }
+}
+
+#topNoticeAlert * {
+    margin: 0;
 }
 
 @include media-breakpoint-up(sm) {

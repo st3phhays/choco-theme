@@ -91,4 +91,46 @@
 
         el.innerText = utcDateTime.toLocal().toFormat("cccc, dd LLL yyyy 'at' h:mm a ZZZZ");
     });
+    
+    // Top Alert
+    window.createMaintenanceMessage=function(data, isPreview) {
+        var maintenanceMessage = 
+            '<span>' + marked(data.message) + '</span>' +
+            '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">' +
+            '<i class="fas fa-times" aria-hidden="true"></i>' +
+            '</button>';
+
+        var maintenanceMessageObject = document.createElement('div');
+        maintenanceMessageObject.setAttribute('id', 'topNoticeAlert');
+        maintenanceMessageObject.setAttribute('role', 'alert');
+        maintenanceMessageObject.setAttribute('class', 'alert bg-' + data.color + ' alert-dismissible alert-dismissible-center fade show');
+        if (isPreview) {
+            maintenanceMessageObject.setAttribute('data-preview', 'true');
+        }
+        maintenanceMessageObject.innerHTML = maintenanceMessage;
+
+        // Append message to header
+        document.getElementsByTagName('HEADER')[0].prepend(maintenanceMessageObject);
+    }
+
+    // Announcements
+    window.createAnnouncementMessages=function(data, isPreview) {
+        var announcementContent = document.getElementById('Announcement_Content');
+
+        for (var i of data) {
+            var announcementMessage = 
+                '<img class="mb-3" src="' + i.image + '">' +
+                '<h5 class="text-primary"><strong>' + i.titleOne + '</strong></h5>' +
+                '<p class="mb-0"><strong>' + i.titleTwo + '</strong></p>' +
+                '<p><strong>' + i.titleThree + '</strong></p>' +
+                '<span class="text-start">' + marked(i.details) + '</span>';
+
+            var announcementMessageObject = document.createElement('div');
+            announcementMessageObject.setAttribute('class', 'text-center');
+            announcementMessageObject.innerHTML = announcementMessage;
+        }
+
+        // Append announcements
+        announcementContent.prepend(announcementMessageObject);
+    }
 })();

@@ -36,6 +36,43 @@
     }
 }
 
+// Colored Radio 
+.form-check-input.form-check-input-color {
+    border-radius: .25em;
+    border-width: 2px;
+    cursor: pointer;
+    height: 1.5rem;
+    width: 1.5rem;
+
+    &:checked {
+        background-image: none;
+    }
+
+    &:not(:checked) {
+        box-shadow: none !important;
+    }
+
+    &.box-shadow-green:checked {
+        background-color: $success;
+    }
+
+    &.box-shadow-red:checked {
+        background-color: $danger;
+    }
+
+    &.box-shadow-yellow:checked {
+        background-color: $warning;
+    }
+
+    &.box-shadow-orange:checked {
+        background-color: $orange;
+    }
+
+    &.box-shadow-purple:checked {
+        background-color: $purple;
+    }
+}
+
 // Markdown task lists
 .task-list-item {
     .form-check {
