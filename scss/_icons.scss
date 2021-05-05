@@ -46,6 +46,11 @@
     width: 1.5em;
     display: block;
     border-radius: .25rem;
+
+    &.square-lg {
+        height: 40px;
+        width: 40px;
+    }
 }
 
 // Status balls

@@ -13,7 +13,21 @@
     width: 100%;
 }
 
-.btn-primary, .btn-success, .btn-danger, .btn-close
+
+@each $color, $value in $colors {
+    .btn-#{$color} {
+        @include button-variant($value, $value);
+    }
+}
+  
+@each $color, $value in $colors {
+    .btn-outline-#{$color} {
+        @include button-outline-variant($value);
+    }
+}
+
+.btn-primary, .btn-success, .btn-danger, .btn-close,
+.btn-blue, .btn-green, .btn-red
 {
     color: $white;
     color: var(--background);
@@ -32,7 +46,8 @@
 }
 
 // Outline buttons shared states
-.btn-outline-primary, .btn-outline-success, .btn-outline-danger
+.btn-outline-primary, .btn-outline-success, .btn-outline-danger,
+.btn-outline-blue, .btn-outline-green, .btn-outline-red
 {
     &:not(:disabled):not(.disabled) {
         &:active, &.active, &:active:focus, &.active:focus {
@@ -292,6 +307,35 @@
             color: var(--text);
             background: var(--background);
             cursor: pointer;
+        }
+    }
+}
+
+
+.btn-check.form-check-input-color {
+    &:not(:checked) + .btn {
+        box-shadow: none !important;
+    }
+
+    &:checked  + {
+        .btn-primary, .btn-blue, .btn-success, .btn-green {
+            color: $white;
+            color: var(--background);
+        }
+
+        @each $color, $value in $colors {
+            .btn-outline-#{$color} {
+                background: none;
+                border-color: $value;
+                color: $value;
+            }
+        }
+
+        @each $color, $value in $colors {
+            .btn-#{$color} {
+                background: $value;
+                border-color: $value;
+            }
         }
     }
 }

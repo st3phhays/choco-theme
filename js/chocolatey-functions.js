@@ -115,22 +115,53 @@
 
     // Announcements
     window.createAnnouncementMessages=function(data, isPreview) {
-        var announcementContent = document.getElementById('Announcement_Content');
+        var announcementContent = document.querySelector('.announcement-content[data-preview="false"]'),
+            announcementContentPreview = document.querySelector('.announcement-content[data-preview="true"]'),
+            announcementListShuffle = '<div class="shuffle">',
+            announcementListPinned = '<div class="pinned">';
+
+        // Shuffle data
+        data = data.sort(() => Math.random() - 0.5);
 
         for (var i of data) {
-            var announcementMessage = 
-                '<img class="mb-3" src="' + i.image + '">' +
-                '<h5 class="text-primary"><strong>' + i.titleOne + '</strong></h5>' +
-                '<p class="mb-0"><strong>' + i.titleTwo + '</strong></p>' +
-                '<p><strong>' + i.titleThree + '</strong></p>' +
-                '<span class="text-start">' + marked(i.details) + '</span>';
+            var image = i.image ? '<img class="mb-3" src="' + i.image + '" alt="' + i.titleOne + '">' : '',
+                image = i.image && i.imageLink ? '<a href="' + i.imageLink + '" target="_blank">' + image + '</a>' : image,
+                titleOne = i.titleOne && i.titleOneIsShown ? '<h5 class="text-primary"><strong>' + i.titleOne + '</strong></h5>' : '',
+                titleOne = i.titleOne && i.titleOneIsShown && i.titleOneLink ? '<a href="' + i.titleOneLink + '" target="_blank">' + titleOne + '</a>' : titleOne, 
+                titleTwo = i.titleTwo ? '<p class="mb-0"><strong>' + i.titleTwo + '</strong></p>' : '',
+                titleThree = i.titleThree ? '<p><strong>' + i.titleThree + '</strong></p>' : '',
+                buttonOne = i.buttonOneText && i.buttonOneLink && i.buttonOneColor ? '<a class="btn btn-width mt-2 btn-' + i.buttonOneColor + '" href="' + i.buttonOneLink + '">' + i.buttonOneText + '</a>' : '',
+                buttonTwo = i.buttonTwoText && i.buttonTwoLink && i.buttonTwoColor ? '<a class="btn btn-width mt-2 me-1 btn-' + i.buttonTwoColor + '" href="' + i.buttonTwoLink + '">' + i.buttonTwoText + '</a>' : '',
+                details = i.details ? '<span class="text-start">' + marked(i.details) + '</span>' : '';
 
-            var announcementMessageObject = document.createElement('div');
-            announcementMessageObject.setAttribute('class', 'text-center');
-            announcementMessageObject.innerHTML = announcementMessage;
+            if (i.isPinned) {
+                announcementListPinned += createLists();
+            } else {
+                announcementListShuffle += createLists();
+            }
+
+            function createLists() {
+                return '<div class="text-center">' +
+                    image +
+                    titleOne +
+                    titleTwo +
+                    titleThree +
+                    details +
+                    buttonTwo +
+                    buttonOne +
+                    '<hr />' +
+                    '</div>';
+            }
         }
 
-        // Append announcements
-        announcementContent.prepend(announcementMessageObject);
+        announcementListShuffle += '</div>';
+        announcementListPinned += '</div>';
+
+        // Apply list
+        if (isPreview) {
+            announcementContentPreview.innerHTML = announcementListPinned + announcementListShuffle;
+        } else {
+            announcementContent.innerHTML = announcementListPinned + announcementListShuffle;
+        }
     }
 })();

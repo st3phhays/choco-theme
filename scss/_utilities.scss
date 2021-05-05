@@ -81,6 +81,14 @@
     height: 400px;
 }
 
+.min-h-100 {
+    min-height: 100px;
+}
+
+.min-h-500 {
+    min-height: 500px;
+}
+
 /*Width*/
 .w-300 {
     width: 300px;
@@ -99,7 +107,7 @@
 }
 
 /*Borders*/
-.border, .border-bottom, .border-top, .border-start, .border-end {
+.border:not(.border-secondary), .border-bottom, .border-top, .border-start, .border-end {
     border-color: var(--border) !important;
 }
 
@@ -193,6 +201,10 @@ hr {
     .d-light-mode {
         display: none;
     }
+}
+
+.shuffle > div:last-child hr {
+    display: none;
 }
 
 @include media-breakpoint-up(md) {

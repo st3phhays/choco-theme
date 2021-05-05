@@ -19,3 +19,7 @@
 .message-cell * {
     margin: 0;
 }
+
+.details-cell *:last-child {
+    margin-bottom: 0;
+}

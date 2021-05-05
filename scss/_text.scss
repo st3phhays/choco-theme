@@ -4,6 +4,12 @@
     }
 }
 
+@each $color, $value in $socialmedia-colors {
+    .text-#{$color} {
+        color: $value;
+    }
+}
+
 .text-theme {
     color: $gray-900;
     color: var(--text);
