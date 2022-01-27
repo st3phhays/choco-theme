@@ -45,6 +45,65 @@
     border-bottom: 1px solid var(--border);
 }
 
+// Infinite Carousel
+@mixin infinite-carousel-gradient {
+	background: linear-gradient(to right,  var(--background) 0%,rgba(255,255,255,0) 100%);
+}
+
+// Animation
+@keyframes scroll {
+	0% { transform: translateX(0); }
+	100% { transform: translateX(calc(-250px * 9))}
+}
+
+// Styling
+.infinite-carousel {
+	//box-shadow: 0 10px 20px -5px rgba(0, 0, 0, .125);
+	height: 100px;
+	margin: auto;
+	overflow:hidden;
+	position: relative;
+	
+	&::before,
+	&::after {
+		@include infinite-carousel-gradient;
+		content: "";
+		height: 100px;
+		position: absolute;
+		width: 100px;
+		z-index: 2;
+	}
+	
+	&::after {
+		right: 0;
+		top: 0;
+		transform: rotateZ(180deg);
+	}
+
+	&::before {
+		left: 0;
+		top: 0;
+	}
+	
+	.infinite-carousel-track {
+		animation: scroll 40s linear infinite;
+		display: flex;
+		width: calc(250px * 18);
+	}
+	
+	.infinite-carousel-slide {
+		height: 100px;
+		width: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            width: 120px;
+        }
+	}
+}
+
 @include media-breakpoint-up(xl) {
     .carousel {
         .carousel-inner {

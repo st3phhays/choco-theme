@@ -1,0 +1,64 @@
+#floating-integrations {
+    top: 50%;
+
+    .circle-logo {
+        height: 150px;
+        width: 150px;
+    }
+
+    .circle-logo-sm {
+        padding: 15%;
+    }
+
+    .circle-logo-md {
+        padding: 12.75%;
+    }
+
+    .circle-logo-lg {
+        padding: 9.7%;
+    }
+
+    .circle-logo-xl {
+        padding: 6.5%;
+    }
+
+    /* Second column of circles */
+    .circle-logo-m-2 {
+        margin-top: -50px;
+        margin-bottom: -50px;
+    }
+
+    /* Fourth column of circles */
+    .circle-logo-m-4 {
+        margin-top: 50px;
+    }
+
+    /* Fifth column of circles */
+    .circle-logo-m-5 {
+        margin-top: -50px;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    #floating-integrations {
+        + svg {
+            margin-top: -10%;
+        }
+
+        /* Second column of circles */
+        .circle-logo-m-2 {
+            margin-top: -100px;
+            margin-bottom: 75px;
+        }
+
+        /* Fourth column of circles */
+        .circle-logo-m-4 {
+            margin-top: 100px;
+        }
+
+        /* Fifth column of circles */
+        .circle-logo-m-5 {
+            margin-top: 25px;
+        }
+    }
+}

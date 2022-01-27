@@ -142,6 +142,10 @@
     background-image: url("/assets/images/global-shared/svg-backgrounds/cornered-stairs.svg");
 }
 
+.bg-yelp-testimonial {
+    background-image: url("/assets/images/videos/01-05.jpg");
+}
+
 .bg-snowflake {
     background: url("/assets/images/snowflake-background.png");
     background-repeat: repeat;
@@ -156,6 +160,19 @@
 
 .img-berry {
     width: 30px;
+}
+
+.bg-gradient-theme-light {
+    background: linear-gradient(to bottom,  var(--background-light) 0%,var(--background) 100%) !important;
+}
+
+.bg-radial {
+    background-image: radial-gradient(circle at center,var(--background-light) 0,rgba(50,51,63,0) 35%);
+}
+
+.bg-slant {
+    height:50px;
+    width: 100%;
 }
 
 @include media-breakpoint-up(md) {

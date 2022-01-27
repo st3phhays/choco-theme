@@ -1,9 +1,16 @@
 .tt {
+    &.w-300 {
+        &:before {
+            width: 300px;
+        }
+    }
+    
     position: relative;
 
     &:before {
         position:absolute;
         display: none;
+        z-index: 9999;
         width: 60px;
         padding: 5px;
         border-radius: .25rem;

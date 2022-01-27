@@ -1,0 +1,128 @@
+#slider-chart {
+    color: var(--background);
+
+    hr {
+        display: none;
+        margin: 0 auto;
+        color: var(--bs-primary);
+        width: 65%;
+        opacity: .4;
+    }
+
+    .col, .col-4 {
+        border-top: 1rem solid var(--bs-primary);
+        border-bottom: 1rem solid var(--bs-primary);
+        background: var(--bs-primary);
+
+        .slider-chart-cell, .slider-chart-cell-price, .slider-chart-cell-fill {
+            padding: 1rem;
+            align-items: center;
+            justify-content: center;
+            flex-flow: column;
+        }
+
+        .slider-chart-cell {
+            height: 100px;
+            border: .5px solid var(--border);
+            display: flex;
+
+            .circle {
+                &.bg-primary .fa-check {
+                    color: var(--background);
+                }
+            }
+        }
+
+        .slider-chart-cell-price, .slider-chart-cell-fill {
+            display: none;
+            border-left: .5px solid var(--border);
+            border-right: .5px solid var(--border);
+        }
+
+        .slider-chart-cell-price {
+            text-align: center;
+            height: 50px;
+        }
+    }
+
+    .col-4 {
+        border-top-left-radius: .25rem;
+        border-bottom-left-radius: .25rem;
+    }
+
+    .col {
+        &.active {
+            margin-top: -15px;
+            background: var(--background-light-4);
+            border-radius: .25rem;
+
+            &.slider-chart-plan-one {
+                border-top: 1rem solid var(--bs-danger);
+                border-bottom: 1rem solid var(--bs-danger);
+            }
+
+            &.slider-chart-plan-two {
+                border-top: 1rem solid var(--bs-orange);
+                border-bottom: 1rem solid var(--bs-orange);
+            }
+
+            &.slider-chart-plan-three {
+                border-top: 1rem solid var(--bs-warning);
+                border-bottom: 1rem solid var(--bs-warning);
+            }
+
+            &.slider-chart-plan-four {
+                border-top: 1rem solid var(--bs-success);
+                border-bottom: 1rem solid var(--bs-success);
+                border-right: 0;
+            }
+
+            .slider-chart-cell-price, .slider-chart-cell-fill, hr {
+                display: flex;
+            }
+
+            .slider-chart-cell {
+                border: none;
+                background: var(--background-light-4);
+            }
+        }
+
+        &.slider-chart-plan-one {
+            .slider-chart-cell {
+                &:nth-child(2) {
+                    border-top-left-radius: .25rem;
+                }
+
+                &:nth-last-child(2) {
+                    border-bottom-left-radius: .25rem;
+                }
+            }
+        }
+
+        &.slider-chart-plan-four {
+            border-right: 1rem solid var(--bs-primary);
+            border-bottom-right-radius: .25rem;
+            border-top-right-radius: .25rem;
+
+            .slider-chart-cell {
+                &:nth-child(2) {
+                    border-top-right-radius: .25rem;
+                }
+
+                &:nth-last-child(2) {
+                    border-bottom-right-radius: .25rem;
+                }
+            }
+        }
+
+        .slider-chart-cell {
+            background: var(--background-light);
+            color: var(--text);
+        }
+    }
+}
+
+.light-theme #slider-chart .col.active {
+    box-shadow: $box-shadow;
+    position: relative;
+}

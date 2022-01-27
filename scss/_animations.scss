@@ -1,0 +1,32 @@
+.floating-animation {
+    animation-name: floating-up;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    animation-duration: 9s;
+}
+
+.floating-animation-fast {
+    animation-duration: 6s;
+    animation-name: floating-down;
+}
+
+.floating-animation-medium {
+    animation-duration: 12s;
+    animation-name: floating-down;
+}
+
+.floating-animation-slow {
+    animation-duration: 15s;
+}
+
+@keyframes floating-up {
+    0% { transform: translate(0, 0px); }
+    50%  { transform: translate(0, 15px); }
+    100%   { transform: translate(0, -0px); }   
+}
+
+@keyframes floating-down {
+    0% { transform: translate(0, -0px); }
+    50%  { transform: translate(0, 15px); }
+    100%   { transform: translate(0, 0px); }   
+}

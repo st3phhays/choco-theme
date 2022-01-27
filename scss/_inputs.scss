@@ -38,7 +38,7 @@
 
 // Custom Switches
 .form-switch {
-    &.form-switch-active, &.form-switch-expired, &.form-switch-deactivated, &.form-switch-latest {
+    &.form-switch-active, &.form-switch-expired, &.form-switch-deactivated, &.form-switch-latest, &.form-switch-primary-check {
         .form-check-input {
             background-image: none !important;
             width: 3rem;
@@ -153,6 +153,103 @@
             border: 1px solid $warning;
         }
     }
+
+    &.form-switch-primary-check .form-check-input {
+        margin-right: 0;
+
+        &:after {
+            font-size: 1rem;
+            top: -3px;
+        }
+
+        &:checked:after {
+            content: "\f00c";
+            color: var(--background);
+            left: 2.25rem;
+        }
+
+        &:not(:checked):after {
+            content: "\f00d";
+            left: 4px;
+            color: var(--bs-primary);
+        }
+
+        &:not(:checked):before {
+            background: var(--background-light);
+        }
+
+        &:checked {
+            background: var(--background-primary-opacity-40);
+        }
+
+        &:before {
+            background: $primary;
+        }
+
+        &:before {
+            height: 30px;
+            width: 30px;
+            top: -3px;
+            border: 1px solid $primary;
+        }
+    }
+}
+
+// Range slider
+.noUi-target {
+    border: none;
+    box-shadow: none;
+    background: none;
+
+    .noUi-connects {
+        background: var(--background-primary-light);
+        border-radius: 10px;
+
+        .noUi-connect {
+            background: $primary;
+        }
+    }
+
+    .noUi-handle {
+        background: $primary;
+        border: 3px solid var(--background);
+        border-radius: 100%;
+        height: 40px;
+        width: 40px;
+        top: -10px;
+        box-shadow: none;
+        cursor: grab;
+
+        &.noUi-active {
+            -moz-box-shadow: 0 0 6px var(--background-primary-opacity-90);
+            -webkit-box-shadow: 0 0 6px var(--background-primary-opacity-90);
+            box-shadow: 0 0 6px var(--background-primary-opacity-90);
+            cursor: grabbing;
+        }
+
+        &:after, &:before {
+            top: 10px;
+            background: var(--background);
+        }
+
+        &:before {
+            left: 15px;
+        }
+
+        &:after {
+            left: 18px;
+        }
+    }
+
+    .noUi-tooltip {
+        background: $primary;
+        border-color: $primary;
+        color: var(--background);
+    }
+}
+
+.noUi-horizontal .noUi-tooltip {
+    bottom: 130%;
 }
 
 // Markdown task lists
