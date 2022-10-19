@@ -4,11 +4,9 @@
     &.card-index {
         height: 100%;
         margin-left: 15px;
-        border: 1px solid transparent;
 
         .circle {
             position: absolute;
-            background: $primary-150;
             background: var(--background-primary-light);
             left: -15px;
             top: 15px;
@@ -27,9 +25,6 @@
         }
 
         &:hover {
-            border: 1px solid $gray-300;
-            border: 1px solid var(--border);
-
             .circle {
                 background: var(--bs-primary);
 
@@ -43,7 +38,7 @@
 
 a, .video-story {
         .card {
-        transition: all 0.3s ease;
+            transition: all 0.3s ease;
 
         &:hover {
             cursor: pointer;
@@ -54,24 +49,10 @@ a, .video-story {
     }
 }
 
-.dark-theme body:not(.boxstarter-org) {
-    .card {
-        border: 1px solid var(--border);
-    }
-}
-
-.light-theme body:not(.boxstarter-org) {
-    .card {
-        box-shadow: $card-box-shadow;
-    }
-}
-
 .navbar-nested-collapse {
     .card {
         border-width: 1px 0 0;
-        border-color: $gray-300;
         border-color: var(--border);
         border-style: solid;
-        box-shadow: unset;
     }
 }

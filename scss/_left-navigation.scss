@@ -1,5 +1,4 @@
 #leftSidebarNav {
-    background: $white;
     background: var(--background-light);
 
     .navbar {
@@ -10,13 +9,11 @@
         
         > .navbar-collapse {
             width: 100%;
-            border-bottom: 1px solid $gray-300;
             border-bottom: 1px solid var(--border);
 
             .navbar-nav {
                 .nav-item {
                     .nav-link {
-                        color: $gray-900;
                         color: var(--text);
                         padding: 0;
         
@@ -24,19 +21,6 @@
                             font-weight: bold;
                         }
 
-                        &.active, &:hover {
-                            color: var(--bs-primary);
-        
-                            .btn-collapse:before, a {
-                                color: var(--bs-primary);
-                            }
-                        }
-        
-                        &.active-page, &:hover {
-                            background: $primary-150;
-                            background: var(--background-primary-light);
-                        }
-        
                         &:not(.nav-link-collapse) {
                             padding: calc($spacer / 2) $spacer calc($spacer / 2) calc($spacer * 2);
                         }
@@ -46,7 +30,6 @@
                         a {
                             width: 100%;
                             padding: calc($spacer / 2) calc($spacer / 4) calc($spacer / 2) 0;
-                            color: $gray-900;
                             color: var(--text);
                         }
 
@@ -54,54 +37,54 @@
                             padding: calc($spacer / 2) 0 calc($spacer / 2) $spacer;
         
                             &:before {
-                                color: $gray-900;
                                 color: var(--text);
                             }
         
                             &:focus {
                                 box-shadow: none;
-        
-                                &:before {
-                                    color: var(--bs-primary);
+                            }
+                        }
+                    }
+
+                    @each $color, $value in $colors {
+                        &.nav-item-#{$color} {
+                            .nav-link {
+                                &.active-page, &:hover {
+                                    background: var(--choco-#{$color}-light);
                                 }
                             }
-                        }
 
-                        &.active {
-                            .collapsed, .collapsed + a {
-                                background: $primary-150;
-                                background: var(--background-primary-light);
+                            .nav-link-collapse {
+                                &.active {
+                                    .collapsed, .collapsed + a {
+                                        background: var(--choco-#{$color}-light);
+                                    }
+                                }
+                            }
+
+                            &.active {
+                                border-left: 6px solid $value;
                             }
                         }
-                    }
-
-                    &:not(.active) {
-                        .nav-link-collapse:not(.active) .btn-collapse:not(.collapsed) {
-                            &:before, + a {
-                                color: var(--bs-primary);
-                            }
-                        }
-                    }
-                    
-                    &.active {
-                        border-left: 6px solid var(--bs-primary);
                     }
                 }
             }
 
             > .navbar-nav {
                 > .nav-item { // First Level
-                    &:not(.active) .nav-link {
-                        border-left: 6px solid transparent;
-
-                        &:hover, &.active:not(.nav-link-collapse) {
-                            border-left: 6px solid var(--bs-primary);
-                        }
-
-                        &.active:not(.nav-link-collapse) {
-                            border-left: 6px solid var(--bs-primary);
+                    @each $color, $value in $colors {
+                        &.nav-item-#{$color}:not(.active) .nav-link {
+                            &:hover, &.active:not(.nav-link-collapse),
+                            &.active:not(.nav-link-collapse) {
+                                border-left: 6px solid $value;
+                            }
                         }
                     }
+
+                    &:not(.active) .nav-link {
+                        border-left: 6px solid transparent;
+                    }
+
                     > .collapse {
                         > .navbar-nav {
                             > .nav-item {
