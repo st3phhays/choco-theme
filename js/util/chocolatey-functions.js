@@ -221,3 +221,37 @@ export const escapeHTML = str => {
         return `&${escapeChars[m]};`;
     });
 };
+
+export const unescapeHTML = str => {
+    const htmlEntities = {
+        nbsp: ' ',
+        cent: '¢',
+        pound: '£',
+        yen: '¥',
+        euro: '€',
+        copy: '©',
+        reg: '®',
+        lt: '<',
+        gt: '>',
+        quot: '"',
+        amp: '&',
+        apos: '\''
+    };
+
+    // eslint-disable-next-line
+    return str.replace(/\&([^;]+);/g, (entity, entityCode) => {
+        let match;
+
+        if (entityCode in htmlEntities) {
+            return htmlEntities[entityCode];
+            // eslint-disable-next-line
+        } else if (match = entityCode.match(/^#x([\da-fA-F]+)$/)) {
+            return String.fromCharCode(parseInt(match[1], 16));
+            // eslint-disable-next-line
+        } else if (match = entityCode.match(/^#(\d+)$/)) {
+            return String.fromCharCode(~~match[1]);
+        } else {
+            return entity;
+        }
+    });
+};
