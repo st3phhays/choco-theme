@@ -1,7 +1,7 @@
 module.exports = {
     env: {
         browser: true,
-        es2021: true
+        es2021: false
     },
     ignorePatterns: ['js/lib', 'node_modules', 'wwwroot/js/*.min.js', 'input/assets/js/*.min.js', 'Scripts/*.min.js'],
     globals: {
