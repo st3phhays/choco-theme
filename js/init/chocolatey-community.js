@@ -28,6 +28,4 @@ import '../ts/chocolatey-tab-multiples.js';
 import '../chocolatey-terminal.js';
 import '../chocolatey-tooltips.js';
 import '../chocolatey-theme-toggle.js';
-import '../lib/typeahead.bundle.min.js';
-import '../lib/elasticsearch.js';
 atcb_init();
