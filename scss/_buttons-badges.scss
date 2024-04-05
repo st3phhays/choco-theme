@@ -1,0 +1,186 @@
+.btn-close
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+// Outline button with badge
+.btn-outline-primary {
+    &:hover,
+    &:active {
+        .badge {
+            color: var(--bs-primary) !important;
+            background: var(--bs-dark) !important;
+        }
+    }
+}
+
+// Navbar toggler
+.navbar-toggler {
+    &:hover .fa-solid {
+        color: $dark;
+    }
+
+    .fa-solid {
+        color: $primary;
+    }
+}
+
+// Custom buttons
+.btn-link:hover {
+    text-decoration: underline;
+}
+
+.btn-theme-background,
+.btn-theme-contrast,
+.btn-outline-theme-background,
+.btn-outline-theme-contrast,
+.btn-theme-neutral {
+    --#{$prefix}btn-focus-shadow-rgb: var(--bs-secondary-rgb);
+}
+
+.btn-theme-background,
+.btn-theme-contrast,
+.btn-outline-theme-background,
+.btn-outline-theme-contrast,
+.btn-theme-neutral,
+.btn-top-nav {
+    --#{$prefix}btn-active-shadow: #{$btn-active-box-shadow};
+}
+
+.btn-top-nav {
+    --#{$prefix}btn-focus-shadow-rgb: var(--bs-primary-rgb);
+    --#{$prefix}btn-color: var(--bs-primary);
+    --#{$prefix}btn-border-color: var(--choco-theme-border-secondary);
+    --#{$prefix}btn-hover-color: var(--bs-dark);
+    --#{$prefix}btn-hover-bg: var(--bs-primary);
+    --#{$prefix}btn-hover-border-color: var(--bs-primary);
+    --#{$prefix}btn-active-color: var(--bs-dark);
+    --#{$prefix}btn-active-bg: var(--bs-primary);
+    --#{$prefix}btn-active-border-color: var(--bs-primary);
+    --#{$prefix}btn-disabled-color: var(--bs-secondary);
+    --#{$prefix}btn-disabled-border-color: var(--choco-theme-border-secondary);
+}
+
+.btn-theme-background {
+    --#{$prefix}btn-color: var(--choco-theme-contrast);
+    --#{$prefix}btn-bg: var(--choco-theme-background);
+    --#{$prefix}btn-border-color: var(--choco-theme-background);
+    --#{$prefix}btn-hover-color: var(--choco-theme-contrast);
+    --#{$prefix}btn-hover-bg: var(--choco-theme-background-hover);
+    --#{$prefix}btn-hover-border-color: var(--choco-theme-background-hover);
+    --#{$prefix}btn-active-color: var(--choco-theme-contrast);
+    --#{$prefix}btn-active-bg: var(--choco-theme-background-hover);
+    --#{$prefix}btn-active-border-color: var(--choco-theme-background-hover);
+    --#{$prefix}btn-disabled-color: var(--choco-theme-contrast);
+    --#{$prefix}btn-disabled-bg: var(--choco-theme-background);
+    --#{$prefix}btn-disabled-border-color: var(--choco-theme-background);
+}
+
+.btn-theme-contrast {
+    --#{$prefix}btn-color: var(--choco-theme-background);
+    --#{$prefix}btn-bg: var(--choco-theme-contrast);
+    --#{$prefix}btn-border-color: var(--choco-theme-contrast);
+    --#{$prefix}btn-hover-color: var(--choco-theme-background);
+    --#{$prefix}btn-hover-bg: var(--choco-theme-contrast-hover);
+    --#{$prefix}btn-hover-border-color: var(--choco-theme-contrast-hover);
+    --#{$prefix}btn-active-color: var(--choco-theme-background);
+    --#{$prefix}btn-active-bg: var(--choco-theme-contrast-hover);
+    --#{$prefix}btn-active-border-color: var(--choco-theme-contrast-hover);
+    --#{$prefix}btn-disabled-color: var(--choco-theme-background);
+    --#{$prefix}btn-disabled-bg: var(--choco-theme-contrast);
+    --#{$prefix}btn-disabled-border-color: var(--choco-theme-contrast);
+}
+
+.btn-theme-neutral {
+    --#{$prefix}btn-color: var(--choco-theme-contrast);
+    --#{$prefix}btn-bg: var(--choco-theme-neutral);
+    --#{$prefix}btn-border-color: var(--choco-theme-neutral);
+    --#{$prefix}btn-hover-color: var(--choco-theme-contrast);
+    --#{$prefix}btn-hover-bg: var(--choco-theme-neutral-hover);
+    --#{$prefix}btn-hover-border-color: var(--choco-theme-neutral-hover);
+    --#{$prefix}btn-active-color: var(--choco-theme-contrast);
+    --#{$prefix}btn-active-bg: var(--choco-theme-neutral-hover);
+    --#{$prefix}btn-active-border-color: var(--choco-theme-neutral-hover);
+    --#{$prefix}btn-disabled-color: var(--choco-theme-contrast);
+    --#{$prefix}btn-disabled-bg: var(--choco-theme-neutral);
+    --#{$prefix}btn-disabled-border-color: var(--choco-theme-neutral);
+}
+
+.btn-outline-theme-background {
+    --#{$prefix}btn-color: var(--choco-theme-background);
+    --#{$prefix}btn-border-color: var(--choco-theme-background);
+    --#{$prefix}btn-hover-color: var(--choco-theme-contrast);
+    --#{$prefix}btn-hover-bg: var(--choco-theme-background);
+    --#{$prefix}btn-hover-border-color: var(--choco-theme-background);
+    --#{$prefix}btn-active-color: var(--choco-theme-contrast);
+    --#{$prefix}btn-active-bg: var(--choco-theme-background);
+    --#{$prefix}btn-active-border-color: var(--choco-theme-background);
+    --#{$prefix}btn-disabled-color: var(--choco-theme-background);
+    --#{$prefix}btn-disabled-border-color: var(--choco-theme-background);
+}
+
+.btn-outline-theme-contrast {
+    --#{$prefix}btn-color: var(--choco-theme-contrast);
+    --#{$prefix}btn-border-color: var(--choco-theme-contrast);
+    --#{$prefix}btn-hover-color: var(--choco-theme-background);
+    --#{$prefix}btn-hover-bg: var(--choco-theme-contrast);
+    --#{$prefix}btn-hover-border-color: var(--choco-theme-contrast);
+    --#{$prefix}btn-active-color: var(--choco-theme-background);
+    --#{$prefix}btn-active-bg: var(--choco-theme-contrast);
+    --#{$prefix}btn-active-border-color: var(--choco-theme-contrast);
+    --#{$prefix}btn-disabled-color: var(--choco-theme-contrast);
+    --#{$prefix}btn-disabled-border-color: var(--choco-theme-contrast);
+}
+
+@each $color, $value in $socialmedia-colors {
+    .btn-#{$color} {
+        @include button-variant($value, $value);
+    }
+
+    .btn-outline-#{$color} {
+        @include button-outline-variant($value);
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    .btn-cta.btn-lg {
+        --bs-btn-font-size: 1.25rem;
+
+        &.btn-link {
+            padding-left: 0;
+        }
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .btn-cta.btn-lg {
+        --bs-btn-font-size: 1.75rem;
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .btn-sm.btn-responsive {
+        padding: .375rem .75rem;
+        font-size: $font-size-base;
+        border-radius: $border-radius;
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    .btn-group-featured-events {
+        .btn,
+        button.atcb-button,
+        button.atcb-button:focus,
+        button.atcb-button:hover {
+            min-width: auto;
+            padding: .25rem .5rem !important;
+            font-size: .85rem;
+        }
+
+        .atcb-icon {
+            height: .75rem;
+        }
+    }
+}
