@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { c4bAddOnPrice } from 'choco-theme/js/src/ts/util/pricing-calculator'; // This is ignored since this is the correct location after it is imported into the repository by gulp
+import { c4bAddOnPrice } from './pricing-calculator'; // This is ignored since this is the correct location after it is imported into the repository by gulp
 import { addOnContainer, packageCounts, packagingSelect } from './util';
 
 test('test-add-on-packaging', async ({ page }) => {

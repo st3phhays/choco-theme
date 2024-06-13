@@ -147,6 +147,7 @@ const init = async () => {
 
         // Playwright
         if (repository.playwright) {
+            // General
             parallelTasksInitial.push(
                 {
                     task: 'Playwright tests - general',
@@ -155,6 +156,7 @@ const init = async () => {
                 }
             );
 
+            // Pricing Calculator
             if (repository.name === repositoryConfig.org.name) {
                 parallelTasksInitial.push(
                     {
@@ -235,6 +237,27 @@ const init = async () => {
         await Promise.all(parallelTasksInitial.map(({ task, source, destination, isFolder }) => {
             return copyTheme({ task, source, destination, isFolder });
         }));
+
+        // Playwright - Pricing Calculator types
+        // This must be done at the end to ensure the files are copied
+        if (repository.playwright) {
+            copyTheme({
+                task: 'Playwright base config',
+                source: `${repositoryConfig.theme.root}/build/data/playwright-config.ts`,
+                destination: `${repository.playwright}/playwright-config.ts`,
+                isFolder: false
+            });
+
+            if (repository.name === repositoryConfig.org.name) {
+                copyTheme({
+                    task: 'Playwright tests - pricing calculator types',
+                    source: `${repositoryConfig.theme.root}/js/src/ts/util/pricing-calculator.ts`,
+                    destination: `${repository.playwright}/pricing-calculator/pricing-calculator.ts`,
+                    isFolder: false
+                });
+            }
+        }
+
         console.log('✅ Copying of choco-theme complete');
 
         // If blog repository, update Program.cs

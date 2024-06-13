@@ -1,29 +1,43 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, Page } from '@playwright/test';
 
-test('test-modals', async ({ page }) => {
+test.beforeEach(async ({ page }) => {
     await page.goto('./');
+});
 
-    const perpetualModal = '#c4bModalPerpetualPricing';
-    const nonProfitModal = '#c4bModalNonProfitPricing';
-    const packagingModal = '#c4bModalPackaging';
-    const responseTimesModal = '#c4bModalResponseTimes';
-    const supportTypeModal = '#c4bModalSupportType';
+const testModal = async (page: Page, locator: string, showContactLink: boolean) => {
+    await page.click(`[data-bs-target="${locator}"]`);
 
-    const testModal = async (locator: string, showContactLink: boolean) => {
-        await page.click(`[data-bs-target="${locator}"]`);
-        await expect(page.locator(locator)).toBeVisible();
+    await page.locator('body.modal-open').waitFor();
 
-        if (showContactLink) {
-            await expect(page.locator(`${locator} .modal-footer a`)).toContainText('Contact Us');
-        }
+    await expect(page.locator(locator)).toBeVisible();
 
-        await page.locator(`${locator} .modal-footer button[data-bs-dismiss="modal"]`).click();
-        await expect(page.locator(locator)).toBeHidden();
-    };
+    if (showContactLink) {
+        await expect(page.locator(`${locator} .modal-footer a`)).toContainText('Contact Us');
+    }
 
-    await testModal(perpetualModal, true);
-    await testModal(nonProfitModal, true);
-    await testModal(packagingModal, false);
-    await testModal(responseTimesModal, false);
-    await testModal(supportTypeModal, false);
+    await page.locator(`${locator} .modal-footer button[data-bs-dismiss="modal"]`).click();
+
+    await page.locator(locator).waitFor({ state: 'hidden' });
+
+    await expect(page.locator(locator)).toBeHidden();
+};
+
+test('test-modals - #c4bModalPerpetualPricing', async ({ page }) => {
+    await testModal(page, '#c4bModalPerpetualPricing', true);
+});
+
+test('test-modals - #c4bModalNonProfitPricing', async ({ page }) => {
+    await testModal(page, '#c4bModalNonProfitPricing', true);
+});
+
+test('test-modals - #c4bModalPackaging', async ({ page }) => {
+    await testModal(page, '#c4bModalPackaging', false);
+});
+
+test('test-modals - #c4bModalResponseTimes', async ({ page }) => {
+    await testModal(page, '#c4bModalResponseTimes', false);
+});
+
+test('test-modals - #c4bModalSupportType', async ({ page }) => {
+    await testModal(page, '#c4bModalSupportType', false);
 });

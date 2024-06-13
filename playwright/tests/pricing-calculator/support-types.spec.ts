@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { c4bSupportNodes } from 'choco-theme/js/src/ts/util/pricing-calculator'; // This is ignored since this is the correct location after it is imported into the repository by gulp
+import { c4bSupportNodes } from './pricing-calculator'; // This is ignored since this is the correct location after it is imported into the repository by gulp
 import { numberInput } from './util';
 
 test('test-support-types', async ({ page }) => {
