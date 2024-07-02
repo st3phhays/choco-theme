@@ -1,0 +1,11 @@
+body:not(.boxstarter-org) {
+    .link-primary,
+    .btn-link {
+        &:hover,
+        &:focus {
+            color: var(--bs-link-color-hover) !important;
+        }
+
+        color: var(--bs-link-color) !important;
+    }
+}

@@ -28,8 +28,8 @@ $info:         $blue;
 $font-family-sans-serif: "PT Sans", sans-serif;
 
 // Code
-$code-color:                        $green;
-$code-color-dark:                   $green;
+$code-color:                        var(--bs-body-color);
+$code-color-dark:                   var(--bs-body-color);
 
 // Cards
 $card-border-radius:                1rem;
