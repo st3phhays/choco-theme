@@ -96,6 +96,16 @@ export const repositoryConfig: Record<string, RepositoryConfig> = {
         ...defaultRepositoryConfig,
         name: 'boxstarter'
     },
+    ccm: {
+        ...defaultRepositoryConfig,
+        name: 'ccm',
+        favicons: 'wwwroot/',
+        css: 'wwwroot/css/',
+        js: 'wwwroot/js/',
+        fontAwesome: 'wwwroot/fonts/fontawesome-free/',
+        images: 'wwwroot/images/global-shared/',
+        partials: 'Areas/Admin/Views/Global/'
+    },
     community: {
         ...defaultRepositoryConfig,
         name: 'community',
@@ -155,6 +165,18 @@ export const repositoryConfig: Record<string, RepositoryConfig> = {
         partials: 'global-partials/',
         language: 'hbs'
     }
+};
+
+// Merge purgeCss section into the portal configuration
+repositoryConfig.ccm.purgeCss = {
+    content: [
+        `${repositoryConfig.ccm.js}*.js`,
+        'Areas/**/*.cshtml',
+        'Pages/**/*.cshtml'
+    ],
+    safelist: [
+        ...defaultRepositoryConfig.purgeCss.safelist,
+    ]
 };
 
 // Merge purgeCss section into the design configuration

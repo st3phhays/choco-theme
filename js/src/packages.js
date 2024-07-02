@@ -1,7 +1,9 @@
 import jQuery from 'jquery';
 import EasyMDE from 'easymde';
 import { Collapse, Modal } from 'bootstrap';
-import { getCookie, setCookieExpirationNever, truncateResults } from './util/functions';
+import { truncateResults } from './util/functions';
+import { setCookieExpirationNever } from './util/set-cookie-expiration-never';
+import { getCookie } from './util/get-cookie';
 
 (() => {
     // Community Disclaimer

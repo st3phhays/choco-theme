@@ -1,5 +1,6 @@
 import { Tab } from 'bootstrap';
-import { copyCodeBlocks, getCookie, selectDeploymentMethodTab } from './util/functions';
+import { copyCodeBlocks, selectDeploymentMethodTab } from './util/functions';
+import { getCookie } from './util/get-cookie';
 
 document.addEventListener('DOMContentLoaded', () => {
     const defaultUrl = 'http://internal/odata/repo';

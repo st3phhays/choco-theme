@@ -1,12 +1,13 @@
 import { Tab } from 'bootstrap';
-import { getCookie, setCookieExpirationNever } from './util/functions';
+import { setCookieExpirationNever } from './util/set-cookie-expiration-never';
+import { getCookie } from './util/get-cookie';
 
 window.addEventListener('DOMContentLoaded', () => {
     const tabMultiAttribute = 'data-choco-tab-multi';
     const tabMultiElements = document.querySelectorAll<HTMLElement>(`[${tabMultiAttribute}]`);
     const tabCookies = new Set<string>(); // Use a Set to store unique cookie names
 
-    if (tabMultiElements.value) {
+    if (tabMultiElements && tabMultiElements.value) {
         for (const tabElement of tabMultiElements) {
             const tabMultiConfigAttribute = tabElement.getAttribute(tabMultiAttribute).replace(/\s/g, '');
             let tabMultiConfig: { [key: string]: string } | null = null;

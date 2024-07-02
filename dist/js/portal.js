@@ -7051,7 +7051,7 @@
     applyCalloutStyles(markdownCallouts);
   })();
 
-  // js/src/ts/util/functions.ts
+  // js/src/ts/util/trim-string.ts
   var trimString = (item) => {
     item.innerHTML = item.innerHTML.trim();
   };

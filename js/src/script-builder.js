@@ -1,5 +1,6 @@
 import { Offcanvas, Modal, Tab } from 'bootstrap';
-import { copyCodeBlocks, getCookie, removeLineBreaks, selectDeploymentMethodTab } from './util/functions';
+import { copyCodeBlocks, removeLineBreaks, selectDeploymentMethodTab } from './util/functions';
+import { getCookie } from './util/get-cookie';
 
 (() => {
     const packages = localStorage.packageList === undefined ? new Array() : JSON.parse(localStorage.packageList); // eslint-disable-line

@@ -16,6 +16,12 @@
     }
 }
 
+.btn-link:focus-visible {
+    box-shadow: unset;
+    outline: 1px auto var(--bs-body-color);
+    outline-offset: 1px;
+}
+
 // Navbar toggler
 .navbar-toggler {
     &:hover .fa-solid {

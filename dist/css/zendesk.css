@@ -17390,6 +17390,10 @@ textarea.form-control-lg {
   min-height: 15px !important;
 }
 
+.min-h-px-16 {
+  min-height: 16px !important;
+}
+
 .min-h-px-20 {
   min-height: 20px !important;
 }
@@ -17484,6 +17488,10 @@ textarea.form-control-lg {
 
 .min-w-px-15 {
   min-width: 15px !important;
+}
+
+.min-w-px-16 {
+  min-width: 16px !important;
 }
 
 .min-w-px-20 {
@@ -17582,6 +17590,10 @@ textarea.form-control-lg {
   height: 15px !important;
 }
 
+.h-px-16 {
+  height: 16px !important;
+}
+
 .h-px-20 {
   height: 20px !important;
 }
@@ -17676,6 +17688,10 @@ textarea.form-control-lg {
 
 .w-px-15 {
   width: 15px !important;
+}
+
+.w-px-16 {
+  width: 16px !important;
 }
 
 .w-px-20 {
@@ -21732,6 +21748,9 @@ textarea.form-control-lg {
   .h-px-sm-15 {
     height: 15px !important;
   }
+  .h-px-sm-16 {
+    height: 16px !important;
+  }
   .h-px-sm-20 {
     height: 20px !important;
   }
@@ -25510,6 +25529,9 @@ textarea.form-control-lg {
   }
   .h-px-md-15 {
     height: 15px !important;
+  }
+  .h-px-md-16 {
+    height: 16px !important;
   }
   .h-px-md-20 {
     height: 20px !important;
@@ -29290,6 +29312,9 @@ textarea.form-control-lg {
   .h-px-lg-15 {
     height: 15px !important;
   }
+  .h-px-lg-16 {
+    height: 16px !important;
+  }
   .h-px-lg-20 {
     height: 20px !important;
   }
@@ -33068,6 +33093,9 @@ textarea.form-control-lg {
   }
   .h-px-xl-15 {
     height: 15px !important;
+  }
+  .h-px-xl-16 {
+    height: 16px !important;
   }
   .h-px-xl-20 {
     height: 20px !important;
@@ -36848,6 +36876,9 @@ textarea.form-control-lg {
   .h-px-xxl-15 {
     height: 15px !important;
   }
+  .h-px-xxl-16 {
+    height: 16px !important;
+  }
   .h-px-xxl-20 {
     height: 20px !important;
   }
@@ -40627,6 +40658,9 @@ textarea.form-control-lg {
   .h-px-xxxl-15 {
     height: 15px !important;
   }
+  .h-px-xxxl-16 {
+    height: 16px !important;
+  }
   .h-px-xxxl-20 {
     height: 20px !important;
   }
@@ -40898,6 +40932,72 @@ main {
   .chocolatey-license-portal h1.title,
   .chocolatey-license-portal .title.h1 {
     margin-bottom: 2rem;
+  }
+}
+:root.chocolatey-ccm main #appSidebar nav li a.active, :root.chocolatey-ccm main #appSidebar nav li a:hover,
+:root.chocolatey-ccm main #appSidebar nav li button.active,
+:root.chocolatey-ccm main #appSidebar nav li button:hover,
+:root[data-bs-theme=light].chocolatey-ccm main #appSidebar nav li a.active,
+:root[data-bs-theme=light].chocolatey-ccm main #appSidebar nav li a:hover,
+:root[data-bs-theme=light].chocolatey-ccm main #appSidebar nav li button.active,
+:root[data-bs-theme=light].chocolatey-ccm main #appSidebar nav li button:hover {
+  background: rgba(92, 159, 216, 0.2);
+}
+:root.chocolatey-ccm main #appSidebar nav li.active-parent a.collapsed,
+:root.chocolatey-ccm main #appSidebar nav li.active-parent button.collapsed,
+:root[data-bs-theme=light].chocolatey-ccm main #appSidebar nav li.active-parent a.collapsed,
+:root[data-bs-theme=light].chocolatey-ccm main #appSidebar nav li.active-parent button.collapsed {
+  background: rgba(92, 159, 216, 0.2);
+}
+
+:root[data-bs-theme=dark].chocolatey-ccm main #appSidebar nav li a.active, :root[data-bs-theme=dark].chocolatey-ccm main #appSidebar nav li a:hover,
+:root[data-bs-theme=dark].chocolatey-ccm main #appSidebar nav li button.active,
+:root[data-bs-theme=dark].chocolatey-ccm main #appSidebar nav li button:hover {
+  background: rgba(92, 159, 216, 0.1);
+}
+:root[data-bs-theme=dark].chocolatey-ccm main #appSidebar nav li.active-parent a.collapsed,
+:root[data-bs-theme=dark].chocolatey-ccm main #appSidebar nav li.active-parent button.collapsed {
+  background: rgba(92, 159, 216, 0.1);
+}
+
+.chocolatey-ccm main #appSidebar {
+  max-width: 300px;
+}
+.chocolatey-ccm main #appSidebar nav li.active-parent:before, .chocolatey-ccm main #appSidebar nav li:hover:before {
+  background: var(--bs-primary);
+  border-radius: 0.25rem;
+  content: "";
+  display: block;
+  height: calc(100% + 4px);
+  left: 0;
+  position: absolute;
+  top: -2px;
+  width: 0.25rem;
+}
+.chocolatey-ccm main #appSidebar nav li.active-parent:first-child::before, .chocolatey-ccm main #appSidebar nav li:hover:first-child::before {
+  top: 0;
+  height: calc(100% + 2px);
+}
+.chocolatey-ccm main #appSidebar nav li.active-parent .active,
+.chocolatey-ccm main #appSidebar nav li.active-parent .collapsed,
+.chocolatey-ccm main #appSidebar nav li.active-parent [aria-expanded=true] {
+  font-weight: bold;
+}
+.chocolatey-ccm main #appSidebar nav li [aria-expanded=true] .fa-angle-down {
+  transform: rotate(180deg);
+}
+.chocolatey-ccm main #appSidebar nav li [data-bs-toggle=collapse] .fa-angle-down {
+  transition: transform 0.35s ease;
+}
+
+@media (min-width: 992px) {
+  .chocolatey-ccm main #appSidebar {
+    min-height: calc(100vh - 57px - 126px);
+    /* visual height - footer - header */
+  }
+  .chocolatey-ccm main #appSidebar,
+  .chocolatey-ccm main #appMain {
+    transition: transform 0.35s ease;
   }
 }
 .dropdown-theme .dropdown-toggle {
@@ -44320,6 +44420,12 @@ blockquote.blockquote-dark::after, blockquote.callout-dark::after,
   background: var(--bs-dark) !important;
 }
 
+.btn-link:focus-visible {
+  box-shadow: unset;
+  outline: 1px auto var(--bs-body-color);
+  outline-offset: 1px;
+}
+
 .navbar-toggler:hover .fa-solid {
   color: #091016;
 }
@@ -44429,6 +44535,19 @@ blockquote.blockquote-dark::after, blockquote.callout-dark::after,
   --bs-btn-active-color: var(--bs-body-bg);
   --bs-btn-active-bg: var(--bs-body-color);
   --bs-btn-active-border-color: var(--bs-body-color);
+  --bs-btn-disabled-color: var(--bs-body-color);
+  --bs-btn-disabled-border-color: var(--bs-body-color);
+}
+
+.btn-outline-primary-accessible {
+  --bs-btn-color: var(--bs-body-color);
+  --bs-btn-border-color: var(--bs-link-color);
+  --bs-btn-hover-color: var(--bs-body-bg);
+  --bs-btn-hover-bg: var(--bs-link-color);
+  --bs-btn-hover-border-color: var(--bs-link-color);
+  --bs-btn-active-color: var(--bs-body-bg);
+  --bs-btn-active-bg: var(--bs-link-color);
+  --bs-btn-active-border-color: var(--bs-link-color);
   --bs-btn-disabled-color: var(--bs-body-color);
   --bs-btn-disabled-border-color: var(--bs-body-color);
 }
@@ -47680,14 +47799,18 @@ li.task-list-item .anchorjs-link {
 }
 
 /*! purgecss end ignore */
-body:not(.boxstarter-org) .link-primary,
-body:not(.boxstarter-org) .btn-link {
+html:not(.chocolatey-ccm) body:not(.boxstarter-org) .link-primary,
+html:not(.chocolatey-ccm) body:not(.boxstarter-org) .btn-link {
   color: var(--bs-link-color) !important;
 }
-body:not(.boxstarter-org) .link-primary:hover, body:not(.boxstarter-org) .link-primary:focus,
-body:not(.boxstarter-org) .btn-link:hover,
-body:not(.boxstarter-org) .btn-link:focus {
+html:not(.chocolatey-ccm) body:not(.boxstarter-org) .link-primary:hover, html:not(.chocolatey-ccm) body:not(.boxstarter-org) .link-primary:focus,
+html:not(.chocolatey-ccm) body:not(.boxstarter-org) .btn-link:hover,
+html:not(.chocolatey-ccm) body:not(.boxstarter-org) .btn-link:focus {
   color: var(--bs-link-color-hover) !important;
+}
+
+.link-underline-none {
+  text-decoration: none !important;
 }
 
 .dropdown-theme .dropdown-toggle {

@@ -829,6 +829,143 @@
   // js/blog.js
   var import_prism_min = __toESM(require_prism_min());
 
+  // js/src/util/set-cookie-expiration-never.js
+  var setCookieExpirationNever = () => {
+    const d = /* @__PURE__ */ new Date();
+    d.setTime(d.getTime() + 100 * 365 * 24 * 60 * 60 * 1e3);
+    return `expires=${d.toUTCString()};`;
+  };
+
+  // js/src/util/get-cookie.js
+  var getCookie = (name) => {
+    const pattern = RegExp(`${name}=.[^;]*`);
+    const matched = document.cookie.match(pattern);
+    if (matched) {
+      const cookie = matched[0].split("=");
+      return cookie[1];
+    }
+    return false;
+  };
+
+  // js/src/alerts.js
+  (() => {
+    const topNoticeAlert = document.getElementById("topNoticeAlert");
+    const topNotice = window.sessionStorage.getItem("notice");
+    const cookieNoticeAlert = document.getElementById("cookieNoticeAlert");
+    const cookieNoticeName = "chocolatey_hide_cookies_notice";
+    if (topNoticeAlert) {
+      if (topNotice) {
+        topNoticeAlert.remove();
+      } else {
+        topNoticeAlert.classList.remove("d-none");
+      }
+      topNoticeAlert.querySelector("button").addEventListener("click", () => sessionStorage.setItem("notice", "true"), false);
+    }
+    if (cookieNoticeAlert) {
+      if (getCookie(cookieNoticeName)) {
+        cookieNoticeAlert.remove();
+      } else {
+        cookieNoticeAlert.classList.remove("d-none");
+      }
+      cookieNoticeAlert.querySelectorAll("button").forEach((el) => {
+        el.addEventListener("click", () => {
+          if (~location.hostname.indexOf("chocolatey.org")) {
+            document.cookie = `${cookieNoticeName}=true; ${setCookieExpirationNever()}path=/; domain=chocolatey.org;`;
+          } else {
+            document.cookie = `${cookieNoticeName}=true; ${setCookieExpirationNever()}path=/;`;
+          }
+        }, false);
+      });
+    }
+  })();
+
+  // js/src/callouts.js
+  (() => {
+    const htmlCallouts = document.querySelectorAll(".callout");
+    const markdownCallouts = document.querySelectorAll("blockquote");
+    const applyCalloutStyles = (calloutType) => {
+      calloutType.forEach((callout) => {
+        let calloutHeader = callout.querySelector(".callout-header");
+        if (callout.nodeName === "BLOCKQUOTE") {
+          if (callout.querySelector("p:first-child") && callout.querySelector("p:first-child").textContent.includes(":choco-")) {
+            calloutHeader = callout.querySelector("p:first-child");
+          }
+        }
+        if (calloutHeader) {
+          let calloutIcon = "";
+          let calloutIconColor = "";
+          let calloutHeaderText = calloutHeader.textContent;
+          if (callout.classList.contains("callout-success") || calloutHeaderText.includes(":choco-success:")) {
+            calloutIconColor = "success";
+            calloutIcon = "check";
+            callout.classList.add("callout-success");
+          } else if (callout.classList.contains("callout-danger") || calloutHeaderText.includes(":choco-danger:")) {
+            calloutIconColor = "danger";
+            calloutIcon = "xmark";
+            callout.classList.add("callout-danger");
+          } else if (callout.classList.contains("callout-warning") || calloutHeaderText.includes(":choco-warning:")) {
+            calloutIconColor = "warning";
+            calloutIcon = "triangle-exclamation";
+            callout.classList.add("callout-warning");
+          } else {
+            calloutIconColor = "info";
+            calloutIcon = "info";
+            callout.classList.add("callout-info");
+          }
+          if (calloutHeaderText.includes(":choco-")) {
+            calloutHeaderText = calloutHeaderText.replace(/:.+?:/, "").trim();
+          }
+          const calloutHeaderContainer = `<div class="callout-header d-flex align-items-center"><span class="flex-shrink-0 text-bg-${calloutIconColor} h-px-30 w-px-30 d-flex align-items-center justify-content-center rounded me-3"><span class="fa-solid fa-${calloutIcon}"></span></span><p class="lead"><strong>${calloutHeaderText}</strong></p></div>`;
+          calloutHeader.outerHTML = calloutHeaderContainer;
+        }
+      });
+    };
+    applyCalloutStyles(htmlCallouts);
+    applyCalloutStyles(markdownCallouts);
+  })();
+
+  // js/src/ts/util/trim-string.ts
+  var trimString = (item) => {
+    item.innerHTML = item.innerHTML.trim();
+  };
+
+  // js/src/ts/code.ts
+  (() => {
+    const codeBlocks = document.querySelectorAll("code");
+    const codePre = document.querySelectorAll("pre");
+    codeBlocks.forEach(trimString);
+    const trimCodeBlocks = () => {
+      const currentURL = window.location.href;
+      const targetURLs = ["en-us/choco/commands/", "en-us/create/commands/"];
+      if (targetURLs.some((url) => currentURL.includes(url))) {
+        const headings = document.querySelectorAll("h2");
+        for (const heading of headings) {
+          const text = heading.textContent.trim();
+          if (text === "Examples" || text === "Usage") {
+            let nextSibling = heading.nextElementSibling;
+            while (nextSibling && nextSibling.tagName !== "H2") {
+              if (nextSibling.tagName === "PRE" && nextSibling.firstElementChild && nextSibling.firstElementChild.tagName === "CODE") {
+                const codeBlock = nextSibling.firstElementChild;
+                const lines = codeBlock.textContent.split("\n");
+                const trimmedLines = lines.map((line) => line.trim());
+                codeBlock.textContent = trimmedLines.join("\n");
+              }
+              nextSibling = nextSibling.nextElementSibling;
+            }
+          }
+        }
+      }
+    };
+    trimCodeBlocks();
+    for (const i of codePre) {
+      if (!i.classList.contains("highlight-delay") && !i.classList.contains("d-format-none")) {
+        const codeElement = i;
+        codeElement.classList.add("line-numbers", "language-none");
+        Prism.highlightAll();
+      }
+    }
+  })();
+
   // node_modules/@popperjs/core/lib/index.js
   var lib_exports = {};
   __export(lib_exports, {
@@ -12195,20 +12332,6 @@
   };
   getElementHeight();
   window.onresize = getElementHeight;
-  var setCookieExpirationNever = () => {
-    const d = /* @__PURE__ */ new Date();
-    d.setTime(d.getTime() + 100 * 365 * 24 * 60 * 60 * 1e3);
-    return `expires=${d.toUTCString()};`;
-  };
-  var getCookie = (name) => {
-    const pattern = RegExp(`${name}=.[^;]*`);
-    const matched = document.cookie.match(pattern);
-    if (matched) {
-      const cookie = matched[0].split("=");
-      return cookie[1];
-    }
-    return false;
-  };
   var getParents = (el) => {
     const parents = [];
     let node = el;
@@ -12277,125 +12400,6 @@
   if (deploymentMethodHashArray.includes(deploymentMethodHash)) {
     document.cookie = `deployment_method=${deploymentMethodHash}; path=/`;
   }
-
-  // js/src/alerts.js
-  (() => {
-    const topNoticeAlert = document.getElementById("topNoticeAlert");
-    const topNotice = window.sessionStorage.getItem("notice");
-    const cookieNoticeAlert = document.getElementById("cookieNoticeAlert");
-    const cookieNoticeName = "chocolatey_hide_cookies_notice";
-    if (topNoticeAlert) {
-      if (topNotice) {
-        topNoticeAlert.remove();
-      } else {
-        topNoticeAlert.classList.remove("d-none");
-      }
-      topNoticeAlert.querySelector("button").addEventListener("click", () => sessionStorage.setItem("notice", "true"), false);
-    }
-    if (cookieNoticeAlert) {
-      if (getCookie(cookieNoticeName)) {
-        cookieNoticeAlert.remove();
-      } else {
-        cookieNoticeAlert.classList.remove("d-none");
-      }
-      cookieNoticeAlert.querySelectorAll("button").forEach((el) => {
-        el.addEventListener("click", () => {
-          if (~location.hostname.indexOf("chocolatey.org")) {
-            document.cookie = `${cookieNoticeName}=true; ${setCookieExpirationNever()}path=/; domain=chocolatey.org;`;
-          } else {
-            document.cookie = `${cookieNoticeName}=true; ${setCookieExpirationNever()}path=/;`;
-          }
-        }, false);
-      });
-    }
-  })();
-
-  // js/src/callouts.js
-  (() => {
-    const htmlCallouts = document.querySelectorAll(".callout");
-    const markdownCallouts = document.querySelectorAll("blockquote");
-    const applyCalloutStyles = (calloutType) => {
-      calloutType.forEach((callout) => {
-        let calloutHeader = callout.querySelector(".callout-header");
-        if (callout.nodeName === "BLOCKQUOTE") {
-          if (callout.querySelector("p:first-child") && callout.querySelector("p:first-child").textContent.includes(":choco-")) {
-            calloutHeader = callout.querySelector("p:first-child");
-          }
-        }
-        if (calloutHeader) {
-          let calloutIcon = "";
-          let calloutIconColor = "";
-          let calloutHeaderText = calloutHeader.textContent;
-          if (callout.classList.contains("callout-success") || calloutHeaderText.includes(":choco-success:")) {
-            calloutIconColor = "success";
-            calloutIcon = "check";
-            callout.classList.add("callout-success");
-          } else if (callout.classList.contains("callout-danger") || calloutHeaderText.includes(":choco-danger:")) {
-            calloutIconColor = "danger";
-            calloutIcon = "xmark";
-            callout.classList.add("callout-danger");
-          } else if (callout.classList.contains("callout-warning") || calloutHeaderText.includes(":choco-warning:")) {
-            calloutIconColor = "warning";
-            calloutIcon = "triangle-exclamation";
-            callout.classList.add("callout-warning");
-          } else {
-            calloutIconColor = "info";
-            calloutIcon = "info";
-            callout.classList.add("callout-info");
-          }
-          if (calloutHeaderText.includes(":choco-")) {
-            calloutHeaderText = calloutHeaderText.replace(/:.+?:/, "").trim();
-          }
-          const calloutHeaderContainer = `<div class="callout-header d-flex align-items-center"><span class="flex-shrink-0 text-bg-${calloutIconColor} h-px-30 w-px-30 d-flex align-items-center justify-content-center rounded me-3"><span class="fa-solid fa-${calloutIcon}"></span></span><p class="lead"><strong>${calloutHeaderText}</strong></p></div>`;
-          calloutHeader.outerHTML = calloutHeaderContainer;
-        }
-      });
-    };
-    applyCalloutStyles(htmlCallouts);
-    applyCalloutStyles(markdownCallouts);
-  })();
-
-  // js/src/ts/util/functions.ts
-  var trimString = (item) => {
-    item.innerHTML = item.innerHTML.trim();
-  };
-
-  // js/src/ts/code.ts
-  (() => {
-    const codeBlocks = document.querySelectorAll("code");
-    const codePre = document.querySelectorAll("pre");
-    codeBlocks.forEach(trimString);
-    const trimCodeBlocks = () => {
-      const currentURL = window.location.href;
-      const targetURLs = ["en-us/choco/commands/", "en-us/create/commands/"];
-      if (targetURLs.some((url) => currentURL.includes(url))) {
-        const headings = document.querySelectorAll("h2");
-        for (const heading of headings) {
-          const text = heading.textContent.trim();
-          if (text === "Examples" || text === "Usage") {
-            let nextSibling = heading.nextElementSibling;
-            while (nextSibling && nextSibling.tagName !== "H2") {
-              if (nextSibling.tagName === "PRE" && nextSibling.firstElementChild && nextSibling.firstElementChild.tagName === "CODE") {
-                const codeBlock = nextSibling.firstElementChild;
-                const lines = codeBlock.textContent.split("\n");
-                const trimmedLines = lines.map((line) => line.trim());
-                codeBlock.textContent = trimmedLines.join("\n");
-              }
-              nextSibling = nextSibling.nextElementSibling;
-            }
-          }
-        }
-      }
-    };
-    trimCodeBlocks();
-    for (const i of codePre) {
-      if (!i.classList.contains("highlight-delay") && !i.classList.contains("d-format-none")) {
-        const codeElement = i;
-        codeElement.classList.add("line-numbers", "language-none");
-        Prism.highlightAll();
-      }
-    }
-  })();
 
   // js/src/collapse-nested.js
   (() => {

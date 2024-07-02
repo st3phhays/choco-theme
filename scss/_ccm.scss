@@ -1,0 +1,110 @@
+:root,
+:root[data-bs-theme="light"] {
+    &.chocolatey-ccm {
+        main #appSidebar nav {
+            li {
+                a, 
+                button {
+                    &.active,
+                    &:hover{
+                        background: rgba($primary, .2);
+                    }
+                }
+
+                &.active-parent {
+                    a,
+                    button {
+                        &.collapsed {
+                            background: rgba($primary, .2);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+:root[data-bs-theme="dark"] {
+    &.chocolatey-ccm {
+        main #appSidebar nav {
+            li {
+                a,
+                button {
+                    &.active,
+                    &:hover{
+                        background: rgba($primary, .1);
+                    }
+                }
+
+                &.active-parent {
+                    a,
+                    button {
+                        &.collapsed {
+                            background: rgba($primary, .1);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.chocolatey-ccm {
+    main #appSidebar {
+        max-width: 300px;
+
+        nav {
+            li {
+                &.active-parent,
+                &:hover {
+                    &:before {
+                        background: var(--bs-primary);
+                        border-radius: .25rem;
+                        content: "";
+                        display: block;
+                        height: calc(100% + 4px);
+                        left: 0;
+                        position: absolute;
+                        top: -2px;
+                        width: .25rem;
+                    }
+        
+                    &:first-child::before {
+                        top: 0;
+                        height: calc(100% + 2px);
+                    }
+                }
+
+                &.active-parent {
+                    .active,
+                    .collapsed,
+                    [aria-expanded="true"] {
+                        font-weight: bold;
+                    }
+                }
+
+                [aria-expanded="true"] .fa-angle-down {
+                    transform: rotate(180deg);
+                }
+
+                [data-bs-toggle="collapse"] .fa-angle-down {
+                    transition: transform .35s ease;
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .chocolatey-ccm {
+        main #appSidebar {
+            min-height: calc(100vh - 57px - 126px);
+            /* visual height - footer - header */
+        }
+
+        main #appSidebar, 
+        main #appMain {
+            transition: transform .35s ease;
+        }
+    }
+}

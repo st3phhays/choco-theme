@@ -1229,6 +1229,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/mustache@npm:^4":
+  version: 4.2.5
+  resolution: "@types/mustache@npm:4.2.5"
+  checksum: 10c0/624975c39068d47407eadb89628aaff5ef60f3b7a71eef92a254310896a4e90518a01dcf71d95779ab2c986034a6ca5403d22fea237c67ff87f2e2b3fb794ea6
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:*, @types/node@npm:^20.14.2":
   version: 20.14.9
   resolution: "@types/node@npm:20.14.9"
@@ -1922,6 +1929,7 @@ __metadata:
     "@tarekraafat/autocomplete.js": "npm:^10.2.7"
     "@types/bootstrap": "npm:^5.2.10"
     "@types/luxon": "npm:^3.3.0"
+    "@types/mustache": "npm:^4"
     "@types/node": "npm:^20.14.2"
     "@types/prismjs": "npm:^1.26.0"
     "@types/ws": "npm:^8"
@@ -1955,6 +1963,7 @@ __metadata:
     luxon: "npm:^3.0.1"
     marked: "npm:^12.0.0"
     mousetrap: "npm:^1.6.5"
+    mustache: "npm:^4.2.0"
     nodemon: "npm:^3.1.0"
     nouislider: "npm:^15.7.0"
     npm-run-all2: "npm:^6.1.2"
@@ -4518,6 +4527,15 @@ __metadata:
   version: 2.1.3
   resolution: "ms@npm:2.1.3"
   checksum: 10c0/d924b57e7312b3b63ad21fc5b3dc0af5e78d61a1fc7cfb5457edaf26326bf62be5307cc87ffb6862ef1c2b33b0233cdb5d4f01c4c958cc0d660948b65a287a48
+  languageName: node
+  linkType: hard
+
+"mustache@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "mustache@npm:4.2.0"
+  bin:
+    mustache: bin/mustache
+  checksum: 10c0/1f8197e8a19e63645a786581d58c41df7853da26702dbc005193e2437c98ca49b255345c173d50c08fe4b4dbb363e53cb655ecc570791f8deb09887248dd34a2
   languageName: node
   linkType: hard
 

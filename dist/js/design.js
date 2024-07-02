@@ -7179,6 +7179,56 @@
   // js/design.js
   var import_prism_min = __toESM(require_prism_min());
 
+  // js/src/util/set-cookie-expiration-never.js
+  var setCookieExpirationNever = () => {
+    const d = /* @__PURE__ */ new Date();
+    d.setTime(d.getTime() + 100 * 365 * 24 * 60 * 60 * 1e3);
+    return `expires=${d.toUTCString()};`;
+  };
+
+  // js/src/util/get-cookie.js
+  var getCookie = (name) => {
+    const pattern = RegExp(`${name}=.[^;]*`);
+    const matched = document.cookie.match(pattern);
+    if (matched) {
+      const cookie = matched[0].split("=");
+      return cookie[1];
+    }
+    return false;
+  };
+
+  // js/src/alerts.js
+  (() => {
+    const topNoticeAlert = document.getElementById("topNoticeAlert");
+    const topNotice = window.sessionStorage.getItem("notice");
+    const cookieNoticeAlert = document.getElementById("cookieNoticeAlert");
+    const cookieNoticeName = "chocolatey_hide_cookies_notice";
+    if (topNoticeAlert) {
+      if (topNotice) {
+        topNoticeAlert.remove();
+      } else {
+        topNoticeAlert.classList.remove("d-none");
+      }
+      topNoticeAlert.querySelector("button").addEventListener("click", () => sessionStorage.setItem("notice", "true"), false);
+    }
+    if (cookieNoticeAlert) {
+      if (getCookie(cookieNoticeName)) {
+        cookieNoticeAlert.remove();
+      } else {
+        cookieNoticeAlert.classList.remove("d-none");
+      }
+      cookieNoticeAlert.querySelectorAll("button").forEach((el) => {
+        el.addEventListener("click", () => {
+          if (~location.hostname.indexOf("chocolatey.org")) {
+            document.cookie = `${cookieNoticeName}=true; ${setCookieExpirationNever()}path=/; domain=chocolatey.org;`;
+          } else {
+            document.cookie = `${cookieNoticeName}=true; ${setCookieExpirationNever()}path=/;`;
+          }
+        }, false);
+      });
+    }
+  })();
+
   // node_modules/@popperjs/core/lib/index.js
   var lib_exports = {};
   __export(lib_exports, {
@@ -18552,20 +18602,6 @@
   };
   getElementHeight();
   window.onresize = getElementHeight;
-  var setCookieExpirationNever = () => {
-    const d = /* @__PURE__ */ new Date();
-    d.setTime(d.getTime() + 100 * 365 * 24 * 60 * 60 * 1e3);
-    return `expires=${d.toUTCString()};`;
-  };
-  var getCookie = (name) => {
-    const pattern = RegExp(`${name}=.[^;]*`);
-    const matched = document.cookie.match(pattern);
-    if (matched) {
-      const cookie = matched[0].split("=");
-      return cookie[1];
-    }
-    return false;
-  };
   var getParents = (el) => {
     const parents = [];
     let node = el;
@@ -18655,38 +18691,6 @@
       return `&${escapeChars[m]};`;
     });
   };
-
-  // js/src/alerts.js
-  (() => {
-    const topNoticeAlert = document.getElementById("topNoticeAlert");
-    const topNotice = window.sessionStorage.getItem("notice");
-    const cookieNoticeAlert = document.getElementById("cookieNoticeAlert");
-    const cookieNoticeName = "chocolatey_hide_cookies_notice";
-    if (topNoticeAlert) {
-      if (topNotice) {
-        topNoticeAlert.remove();
-      } else {
-        topNoticeAlert.classList.remove("d-none");
-      }
-      topNoticeAlert.querySelector("button").addEventListener("click", () => sessionStorage.setItem("notice", "true"), false);
-    }
-    if (cookieNoticeAlert) {
-      if (getCookie(cookieNoticeName)) {
-        cookieNoticeAlert.remove();
-      } else {
-        cookieNoticeAlert.classList.remove("d-none");
-      }
-      cookieNoticeAlert.querySelectorAll("button").forEach((el) => {
-        el.addEventListener("click", () => {
-          if (~location.hostname.indexOf("chocolatey.org")) {
-            document.cookie = `${cookieNoticeName}=true; ${setCookieExpirationNever()}path=/; domain=chocolatey.org;`;
-          } else {
-            document.cookie = `${cookieNoticeName}=true; ${setCookieExpirationNever()}path=/;`;
-          }
-        }, false);
-      });
-    }
-  })();
 
   // js/src/code-copy-for-view.js
   (() => {
@@ -18780,23 +18784,9 @@
     applyCalloutStyles(markdownCallouts);
   })();
 
-  // js/src/ts/util/functions.ts
+  // js/src/ts/util/trim-string.ts
   var trimString = (item) => {
     item.innerHTML = item.innerHTML.trim();
-  };
-  var getCookie2 = (name) => {
-    const pattern = RegExp(`${name}=.[^;]*`);
-    const matched = document.cookie.match(pattern);
-    if (matched) {
-      const cookie = matched[0].split("=");
-      return cookie[1];
-    }
-    return false;
-  };
-  var setCookieExpirationNever2 = () => {
-    const d = /* @__PURE__ */ new Date();
-    d.setTime(d.getTime() + 100 * 365 * 24 * 60 * 60 * 1e3);
-    return `expires=${d.toUTCString()};`;
   };
 
   // js/src/ts/code.ts
@@ -19069,12 +19059,30 @@
     });
   })();
 
+  // js/src/ts/util/set-cookie-expiration-never.ts
+  var setCookieExpirationNever2 = () => {
+    const d = /* @__PURE__ */ new Date();
+    d.setTime(d.getTime() + 100 * 365 * 24 * 60 * 60 * 1e3);
+    return `expires=${d.toUTCString()};`;
+  };
+
+  // js/src/ts/util/get-cookie.ts
+  var getCookie2 = (name) => {
+    const pattern = RegExp(`${name}=.[^;]*`);
+    const matched = document.cookie.match(pattern);
+    if (matched) {
+      const cookie = matched[0].split("=");
+      return cookie[1];
+    }
+    return false;
+  };
+
   // js/src/ts/tab-multiples.ts
   window.addEventListener("DOMContentLoaded", () => {
     const tabMultiAttribute = "data-choco-tab-multi";
     const tabMultiElements = document.querySelectorAll(`[${tabMultiAttribute}]`);
     const tabCookies = /* @__PURE__ */ new Set();
-    if (tabMultiElements.value) {
+    if (tabMultiElements && tabMultiElements.value) {
       for (const tabElement of tabMultiElements) {
         const tabMultiConfigAttribute = tabElement.getAttribute(tabMultiAttribute).replace(/\s/g, "");
         let tabMultiConfig = null;
