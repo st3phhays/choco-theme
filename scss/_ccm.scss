@@ -53,6 +53,23 @@
     main #appSidebar {
         max-width: 300px;
 
+        &.disabled li {
+            &:not(.active-parent):hover {
+                &:before {
+                    background: none !important;
+                }
+            }
+
+            a, button {
+                opacity: 0.5 !important;
+                pointer-events: none !important;
+    
+                &:hover {
+                    background: none !important;
+                }
+            }
+        } 
+
         nav {
             li {
                 &.active-parent,

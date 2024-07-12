@@ -1,17 +1,10 @@
 import { toastSuccess } from './toast-success';
+import { dataTableReload } from './datatable-reload';
 
-export const toastSuccessReloadTable = (message, tables, serverSide) => {
+export const toastSuccessReloadTable = (message, tables, retainPaging = false) => {
     // Show toast
     toastSuccess(message);
-
-    console.log(tables);
-    //TODO - Add in paging retain
-    // Reload tables
-    if (serverSide) {
-        tables.draw();
-    } else {
-        tables.ajax.reload();
-    }
-
-    // tables.ajax.reload();
+    
+    // Reload table
+    dataTableReload(tables, retainPaging)
 };

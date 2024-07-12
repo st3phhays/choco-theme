@@ -1,6 +1,5 @@
 import jQuery from 'jquery';
 import EasyMDE from 'easymde';
-import { Collapse, Modal } from 'bootstrap';
 import { truncateResults } from './util/functions';
 import { setCookieExpirationNever } from './util/set-cookie-expiration-never';
 import { getCookie } from './util/get-cookie';
@@ -13,7 +12,7 @@ import { getCookie } from './util/get-cookie';
         const disclaimer = document.getElementById('package-disclaimer');
 
         if (disclaimer) {
-            const disclaimerModal = Modal.getOrCreateInstance(disclaimer, { keyboard: false, backdrop: 'static' });
+            const disclaimerModal = bootstrap.Modal.getOrCreateInstance(disclaimer, { keyboard: false, backdrop: 'static' });
 
             disclaimerModal.show();
 
@@ -27,7 +26,7 @@ import { getCookie } from './util/get-cookie';
     const packageWarning = document.getElementById('package-warning');
     if (packageWarning) {
         const cookiePackageWarningName = 'chocolatey_hide_packages_warning';
-        const packageWarningCallout = Collapse.getOrCreateInstance(packageWarning, { toggle: false });
+        const packageWarningCallout = bootstrap.Collapse.getOrCreateInstance(packageWarning, { toggle: false });
 
         if (!getCookie(cookiePackageWarningName)) {
             const packageWarningBtn = document.querySelector('#callout-package-warning .btn');
@@ -231,7 +230,7 @@ import { getCookie } from './util/get-cookie';
                 }
 
                 for (const i of fileCollapse) {
-                    const fileCollapseTarget = Collapse.getOrCreateInstance(i, { toggle: false });
+                    const fileCollapseTarget = bootstrap.getOrCreateInstance(i, { toggle: false });
 
                     fileCollapseTarget.show();
                 }
@@ -245,7 +244,7 @@ import { getCookie } from './util/get-cookie';
                 }
 
                 for (const i of fileCollapse) {
-                    const fileCollapseTarget = Collapse.getOrCreateInstance(i, { toggle: false });
+                    const fileCollapseTarget = bootstrap.Collapse.getOrCreateInstance(i, { toggle: false });
 
                     fileCollapseTarget.hide();
                 }

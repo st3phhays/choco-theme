@@ -52,7 +52,7 @@ const copyTheme = async ({
 
 const init = async () => {
     try {
-        const containsValidation = repository.name === repositoryConfig.portal.name || repository.name === repositoryConfig.community.name || repository.name === repositoryConfig.ccm.name;
+        const containsValidation = repository.name === repositoryConfig.portal.name || repository.name === repositoryConfig.community.name;
 
         // Define array for parallel tasks
         const parallelTasksInitial = [
@@ -61,6 +61,12 @@ const init = async () => {
                 source: `${repositoryConfig.theme.css}${sourceCss}.min.css`,
                 destination: `${repository.css}${repository.name}.min.css`,
                 isFolder: false
+            },
+            {
+                task: 'PT Sans',
+                source: repositoryConfig.theme.ptSans,
+                destination: repository.ptSans,
+                isFolder: true
             }
         ];
 
@@ -136,6 +142,54 @@ const init = async () => {
             );
         }
 
+        // bootstrap-duallistbox css
+        if (repository.name === repositoryConfig.ccm.name) {
+            parallelTasksInitial.push(
+                {
+                    task: 'bootstrap-duallistbox.min.css',
+                    source: `${repositoryConfig.theme.css}bootstrap-duallistbox.min.css`,
+                    destination: `${repository.css}bootstrap-duallistbox.min.css`,
+                    isFolder: false
+                }
+            );
+        }
+
+        // jstree css
+        if (repository.name === repositoryConfig.ccm.name) {
+            parallelTasksInitial.push(
+                {
+                    task: 'jstree.min.css',
+                    source: `${repositoryConfig.theme.css}jstree.min.css`,
+                    destination: `${repository.css}jstree.min.css`,
+                    isFolder: false
+                }
+            );
+        }
+
+        // vendors css
+        if (repository.name === repositoryConfig.ccm.name) {
+            parallelTasksInitial.push(
+                {
+                    task: 'vendors.min.css',
+                    source: `${repositoryConfig.theme.css}vendors.min.css`,
+                    destination: `${repository.css}vendors.min.css`,
+                    isFolder: false
+                }
+            );
+        }
+
+        // tempus-dominus css
+        if (repository.name === repositoryConfig.ccm.name) {
+            parallelTasksInitial.push(
+                {
+                    task: 'tempus-dominus.min.css',
+                    source: `${repositoryConfig.theme.css}tempus-dominus.min.css`,
+                    destination: `${repository.css}tempus-dominus.min.css`,
+                    isFolder: false
+                }
+            );
+        }
+
         // Playwright
         if (repository.playwright) {
             parallelTasksInitial.push(
@@ -184,7 +238,7 @@ const init = async () => {
         }
 
         // Images
-        if (repository.name !== repositoryConfig.zendesk.name) {
+        if (repository.name !== repositoryConfig.zendesk.name && repository.name !== repositoryConfig.ccm.name) {
             parallelTasksInitial.push(
                 {
                     task: 'Images',
@@ -281,6 +335,19 @@ const init = async () => {
                 replacementContentIsFile: false
             });
             console.log('✅ Image paths for headers updated');
+        }
+
+        if (repository.name === repositoryConfig.ccm.name) {
+            console.log('🚀 Updating jstree image paths...');
+            await updateContent({
+                destination: repository.css,
+                targetFile: 'jstree.min.css',
+                targetFileDestination: repository.css,
+                targetFileContentToReplace: 'url(32px.png)',
+                replaceWithContent: 'var(--jstree-image-checkbox-path)',
+                replacementContentIsFile: false
+            });
+            console.log('✅ jstree image paths updated');
         }
 
         // PurgeCSS

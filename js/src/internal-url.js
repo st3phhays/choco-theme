@@ -1,4 +1,3 @@
-import { Tab } from 'bootstrap';
 import { copyCodeBlocks, selectDeploymentMethodTab } from './util/functions';
 import { getCookie } from './util/get-cookie';
 
@@ -69,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const packagePageIndividual = document.querySelector('#individual-method-tab');
 
             if (packagePageIndividual) {
-                const packagePageIndividualTab = Tab.getOrCreateInstance(packagePageIndividual, { toggle: false });
+                const packagePageIndividualTab = bootstrap.Tab.getOrCreateInstance(packagePageIndividual, { toggle: false });
 
                 packagePageIndividualTab.show();
             }
@@ -77,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const packagePageOrganization = document.querySelector('#organization-method-tab');
 
             if (packagePageOrganization) {
-                const packagePageOrganizationTab = Tab.getOrCreateInstance(packagePageOrganization, { toggle: false });
+                const packagePageOrganizationTab = bootstrap.Tab.getOrCreateInstance(packagePageOrganization, { toggle: false });
 
                 packagePageOrganizationTab.show();
             }

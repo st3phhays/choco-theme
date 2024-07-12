@@ -12,6 +12,7 @@ export interface RepositoryConfig {
     js: string;
     favicons: string;
     fontAwesome: string;
+    ptSans: string;
     images: string;
     partials: string;
     root: string;
@@ -28,6 +29,7 @@ export const defaultRepositoryConfig = {
     js: 'input/assets/js/',
     favicons: 'input/',
     fontAwesome: 'input/assets/fonts/fontawesome-free/',
+    ptSans: 'input/assets/fonts/PT_Sans/',
     images: 'input/assets/images/global-shared/',
     partials: 'input/global-partials/',
     language: 'cshtml',
@@ -56,6 +58,7 @@ export const astroRepositoryConfig = {
     js: 'public/scripts/',
     favicons: 'public/',
     fontAwesome: 'public/fonts/fontawesome-free/',
+    ptSans: 'public/fonts/fonts/PT_Sans/',
     images: 'public/images/global-shared/',
     partials: 'src/components/global/',
     language: 'astro',
@@ -103,6 +106,7 @@ export const repositoryConfig: Record<string, RepositoryConfig> = {
         css: 'wwwroot/css/',
         js: 'wwwroot/js/',
         fontAwesome: 'wwwroot/fonts/fontawesome-free/',
+        ptSans: 'wwwroot/fonts/PT_Sans/',
         images: 'wwwroot/images/global-shared/',
         partials: 'Areas/Admin/Views/Global/'
     },
@@ -113,6 +117,7 @@ export const repositoryConfig: Record<string, RepositoryConfig> = {
         js: 'Scripts/',
         favicons: './',
         fontAwesome: 'Content/fonts/fontawesome-free/',
+        ptSans: 'Content/fonts/PT_Sans/',
         images: 'Content/Images/global-shared/',
         partials: 'Views/GlobalPartials/'
     },
@@ -141,6 +146,7 @@ export const repositoryConfig: Record<string, RepositoryConfig> = {
         css: 'wwwroot/css/',
         js: 'wwwroot/js/',
         fontAwesome: 'wwwroot/fonts/fontawesome-free/',
+        ptSans: 'wwwroot/fonts/PT_Sans/',
         images: 'wwwroot/images/global-shared/',
         partials: 'Pages/Global/'
     },
@@ -150,6 +156,7 @@ export const repositoryConfig: Record<string, RepositoryConfig> = {
         js: 'node_modules/choco-theme/dist/js/',
         favicons: 'node_modules/choco-theme/images/favicons/',
         fontAwesome: 'node_modules/@fortawesome/fontawesome-free/webfonts/',
+        ptSans: 'node_modules/choco-theme/fonts/PT_Sans/',
         images: 'node_modules/choco-theme/images/global-shared/',
         partials: 'node_modules/choco-theme/dist/partials/',
         playwright: 'node_modules/choco-theme/playwright/',
@@ -162,6 +169,7 @@ export const repositoryConfig: Record<string, RepositoryConfig> = {
         css: 'assets/',
         js: 'assets/',
         favicons: 'assets/',
+        ptSans: 'assets/fonts/PT_Sans/',
         partials: 'global-partials/',
         language: 'hbs'
     }

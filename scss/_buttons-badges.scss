@@ -38,6 +38,14 @@
     text-decoration: underline;
 }
 
+button.btn-grab:not(:disabled) {
+    cursor: grab;
+}
+
+.sortable-chosen button.btn-grab:not(:disabled) {
+    cursor: grabbing;
+}
+
 .btn-bg-body,
 .btn-bg-body-contrast,
 .btn-outline-bg-body,
