@@ -1,0 +1,16 @@
+:root[data-bs-theme="bbb"] {
+    --bs-body-bg:           #{$body-bg-bbb};
+    --bs-body-color:        #{$body-color-bbb};
+
+    --bs-green:             #{$green-bbb};
+
+    header {
+        #topNav {
+            background: $primary-600-bbb;
+
+            .nav-link {
+                color: var(--bs-white);
+            }
+        }
+    }
+}

@@ -15,3 +15,10 @@
     --choco-adaptive: #{$adaptive-dark};
     --choco-border-color-adaptive: #{$border-color-adaptive-dark};
 }
+
+// :root[data-bs-theme="bbb"] {
+//     --bs-body-bg:           #{$body-color-bbb};
+//     --bs-body-color:        #{$body-bg-bbb};
+
+//     --bs-green:                #{$green-bbb};
+// }

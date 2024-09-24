@@ -9,11 +9,16 @@ $body-bg:                           $gray-100;
 $body-color-dark:                   $gray-200;
 $body-bg-dark:                      $primary-950;
 
+$body-color-bbb:                    $primary-900-bbb;
+$body-bg-bbb:                       $beige-bbb;
+
 $body-secondary-bg:                 $white;
 $body-secondary-bg-dark:            $primary-900;
+$body-secondary-bg-bbb:             $beige-dark-bbb;
 
 $body-tertiary-bg:                  $gray-300;
 $body-tertiary-bg-dark:             $primary-800;
+$body-tertiary-bg-bbb:              $brown-bbb;
 
 // Links
 $link-color:                        shade-color($primary, 40%); // shade this so it's accessible

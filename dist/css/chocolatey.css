@@ -63232,3 +63232,14 @@ html:not(.chocolatey-ccm) body:not(.boxstarter-org) .btn-link:focus {
     font-size: 0.875em;
   }
 }
+:root[data-bs-theme=bbb] {
+  --bs-body-bg: #f1efe1;
+  --bs-body-color: #202f3c;
+  --bs-green: #008000;
+}
+:root[data-bs-theme=bbb] header #topNav {
+  background: #2f6492;
+}
+:root[data-bs-theme=bbb] header #topNav .nav-link {
+  color: var(--bs-white);
+}

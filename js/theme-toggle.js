@@ -1,3 +1,7 @@
+import { confettiBurst } from './src/util/confetti-burst';
+import { setCookieExpirationNever } from './src/util/set-cookie-expiration-never';
+import { getCookie } from './src/util/get-cookie';
+
 (() => {
     'use strict';
 
@@ -28,7 +32,6 @@
 
         for (const themeSwitcher of themeSwitchers) {
             const themeSwitcherBtns = themeSwitcher.querySelectorAll('.dropdown-toggle');
-            // const activeThemeIcon = themeSwitcher.querySelectorAll('.theme-icon-active');
             const btnToActive = themeSwitcher.querySelector(`[data-bs-theme-value="${theme}"]`);
             const svgOfActiveBtn = btnToActive.querySelector('i[data-ct-theme-icon]').getAttribute('data-ct-theme-icon');
 
@@ -71,6 +74,29 @@
                 setStoredTheme(theme);
                 setTheme(theme);
                 showActiveTheme(theme, true);
+
+                // If theme is Bring Back Beige, show confetti and set a cookie
+                if (theme === 'bbb') {
+                    const bbbCookie = 'bbb-shown';
+
+                    if (!getCookie(bbbCookie)) {
+                        if (~location.hostname.indexOf('chocolatey.org')) {
+                            document.cookie = `${bbbCookie}=true; ${setCookieExpirationNever()}path=/; domain=chocolatey.org;`;
+                        } else {
+                            document.cookie = `${bbbCookie}=true; ${setCookieExpirationNever()}path=/;`;
+                        }
+    
+                        document.querySelectorAll('main').forEach(main => {
+                            main.classList.add('z-0');
+                        });
+
+                        confettiBurst();
+
+                        document.querySelectorAll('main').forEach(main => {
+                            main.classList.remove('z-0');
+                        });
+                    }
+                }
 
                 // Create and send event for Disqus to reload
                 const event = new Event('themeChanged');
