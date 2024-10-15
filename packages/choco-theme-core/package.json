@@ -1,0 +1,33 @@
+{
+  "name": "@choco-theme/core",
+  "version": "0.1.0",
+  "description": "Core files for choco-theme.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chocolatey/choco-theme.git",
+    "directory": "packages/choco-theme-core"
+  },
+  "author": "Chocolatey Software (https://chocolatey.org/)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/chocolatey/choco-theme/issues"
+  },
+  "homepage": "https://github.com/chocolatey/choco-theme/packages/core#readme",
+  "devDependencies": {
+    "@choco-theme/lib": "workspace:^",
+    "@fortawesome/fontawesome-free": "^6.1.2",
+    "anchor-js": "^5.0.0",
+    "balance-text": "^3.3.1",
+    "canvas-confetti": "^1.5.1",
+    "jquery-validation-unobtrusive": "^4.0.0",
+    "lite-youtube-embed": "^0.3.0",
+    "mousetrap": "^1.6.5"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.44.1",
+    "@types/node": "^20.14.2",
+    "purgecss": "^6.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.2"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "@choco-theme/community",
+  "version": "0.1.0",
+  "description": "Specific resources for the Community project for choco-theme.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chocolatey/choco-theme.git",
+    "directory": "packages/choco-theme-community"
+  },
+  "author": "Chocolatey Software (https://chocolatey.org/)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/chocolatey/choco-theme/issues"
+  },
+  "homepage": "https://github.com/chocolatey/choco-theme/packages/choco-theme-community#readme",
+  "devDependencies": {
+    "@tarekraafat/autocomplete.js": "^10.2.7",
+    "easymde": "^2.16.1"
+  },
+  "dependencies": {
+    "@choco-theme/core": "workspace:^"
+  }
+}

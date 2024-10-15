@@ -1,0 +1,23 @@
+{
+  "name": "@choco-theme/org",
+  "version": "0.1.0",
+  "description": "Specific resources for the Org project for choco-theme.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chocolatey/choco-theme.git",
+    "directory": "packages/choco-theme-org"
+  },
+  "author": "Chocolatey Software (https://chocolatey.org/)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/chocolatey/choco-theme/issues"
+  },
+  "homepage": "https://github.com/chocolatey/choco-theme/packages/choco-theme-org#readme",
+  "devDependencies": {
+    "@splidejs/splide": "^4.1.4",
+    "@splidejs/splide-extension-auto-scroll": "^0.5.3",
+    "@splidejs/splide-extension-intersection": "^0.2.0",
+    "add-to-calendar-button": "^2.6.9",
+    "nouislider": "^15.7.0"
+  }
+}

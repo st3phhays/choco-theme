@@ -1,0 +1,31 @@
+{
+  "name": "@choco-theme/lib",
+  "version": "0.1.0",
+  "description": "Core files for choco-theme.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chocolatey/choco-theme.git",
+    "directory": "packages/choco-theme-lib"
+  },
+  "author": "Chocolatey Software (https://chocolatey.org/)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/chocolatey/choco-theme/issues"
+  },
+  "homepage": "https://github.com/chocolatey/choco-theme/packages/lib#readme",
+  "dependencies": {
+    "@types/bootstrap": "^5.2.10",
+    "@types/luxon": "^3.3.0",
+    "bootstrap": "5.3.3",
+    "chartist": "^0.11.4",
+    "chartist-plugin-legend": "^0.6.2",
+    "clipboard": "^2.0.11",
+    "datatables.net-bs5": "^2.0.8",
+    "datatables.net-dt": "^2.0.8",
+    "flatpickr": "^4.6.13",
+    "jquery": "^3.7.1",
+    "jquery-validation": "^1.21.0",
+    "luxon": "^3.0.1",
+    "marked": "^12.0.0"
+  }
+}

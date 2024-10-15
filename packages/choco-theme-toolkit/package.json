@@ -1,0 +1,30 @@
+{
+  "name": "@choco-theme/toolkit",
+  "version": "0.1.0",
+  "description": "External build files for choco-theme.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chocolatey/choco-theme.git",
+    "directory": "packages/choco-theme-toolkit"
+  },
+  "author": "Chocolatey Software (https://chocolatey.org/)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/chocolatey/choco-theme/issues"
+  },
+  "homepage": "https://github.com/chocolatey/choco-theme/packages/toolkit#readme",
+  "dependencies": {
+    "@eslint/eslintrc": "^3.1.0",
+    "@eslint/js": "^9.11.1",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
+    "esbuild": "^0.20.1",
+    "eslint": "^9.11.1",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-playwright": "^1.4.1",
+    "eslint-plugin-promise": "^6.0.0",
+    "globals": "^15.9.0"
+  }
+}

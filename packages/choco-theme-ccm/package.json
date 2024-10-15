@@ -1,0 +1,43 @@
+{
+  "name": "@choco-theme/ccm",
+  "version": "0.1.0",
+  "description": "Specific resources for the CCM project for choco-theme.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chocolatey/choco-theme.git",
+    "directory": "packages/choco-theme-ccm"
+  },
+  "author": "Chocolatey Software (https://chocolatey.org/)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/chocolatey/choco-theme/issues"
+  },
+  "homepage": "https://github.com/chocolatey/choco-theme/packages/choco-theme-ccm#readme",
+  "dependencies": {
+    "@choco-theme/core": "workspace:^",
+    "@choco-theme/lib": "workspace:^",
+    "@choco-theme/toolkit": "workspace:^",
+    "@eonasdan/tempus-dominus": "^6.9.9",
+    "@microsoft/signalr": "^8.0.7",
+    "@types/jstree": "^3",
+    "@types/mustache": "^4",
+    "@types/signalr": "^2",
+    "@types/sortablejs": "^1",
+    "@types/timeago": "^1",
+    "@types/underscore": "^1",
+    "abp-web-resources": "^5.9.2",
+    "block-ui": "^2.70.1",
+    "cropperjs": "^1.6.2",
+    "jquery-serializejson": "^3.2.1",
+    "jstree": "^3.3.16",
+    "moment": "^2.30.1",
+    "moment-timezone": "^0.5.45",
+    "mustache": "^4.2.0",
+    "pwstrength-bootstrap": "^3.1.3",
+    "sortablejs": "^1.15.2",
+    "spin.js": "^4.1.2",
+    "sweetalert2": "^11.12.3",
+    "timeago": "^1.6.7",
+    "underscore": "^1.13.7"
+  }
+}
