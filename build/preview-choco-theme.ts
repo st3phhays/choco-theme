@@ -11,7 +11,7 @@ import * as path from 'path';
 import { spawn } from 'child_process';
 
 import { folderMapping } from './data/preview-config';
-import { loadingAnimation } from './functions/loading-animation';
+import { loadingAnimation } from '@choco-theme/core/build/functions/loading-animation';
 
 const init = async () => {
     // Parse command-line arguments

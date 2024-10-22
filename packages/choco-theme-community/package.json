@@ -15,7 +15,9 @@
   "homepage": "https://github.com/chocolatey/choco-theme/packages/choco-theme-community#readme",
   "devDependencies": {
     "@tarekraafat/autocomplete.js": "^10.2.7",
-    "easymde": "^2.16.1"
+    "easymde": "^2.16.1",
+    "jquery-validation-unobtrusive": "^4.0.0",
+    "mousetrap": "^1.6.5"
   },
   "dependencies": {
     "@choco-theme/core": "workspace:^"

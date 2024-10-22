@@ -8,7 +8,7 @@
 
 import * as fs from 'fs/promises';
 import path from 'node:path';
-import { updateContent } from './functions/update-content';
+import { updateContent } from '@choco-theme/core/build/functions/update-content';
 
 export interface UpdateLanguageAttributes {
     files: string[];

@@ -52,11 +52,17 @@
     "packages/*"
   ],
   "devDependencies": {
+    "@choco-theme/core": "workspace:^",
+    "@choco-theme/lib": "workspace:^",
     "@choco-theme/toolkit": "workspace:^",
+    "@fortawesome/fontawesome-free": "^6.1.2",
     "@types/ws": "^8",
+    "balance-text": "^3.3.1",
+    "canvas-confetti": "^1.5.1",
     "cssnano": "^6.1.0",
     "http-server": "^14.1.1",
     "license-report": "^6.5.0",
+    "lite-youtube-embed": "^0.3.0",
     "nodemon": "^3.1.0",
     "npm-run-all2": "^6.1.2",
     "postcss": "^8.4.35",

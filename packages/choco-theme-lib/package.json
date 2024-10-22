@@ -23,7 +23,6 @@
     "datatables.net-bs5": "^2.0.8",
     "datatables.net-dt": "^2.0.8",
     "flatpickr": "^4.6.13",
-    "jquery": "^3.7.1",
     "jquery-validation": "^1.21.0",
     "luxon": "^3.0.1",
     "marked": "^12.0.0"
