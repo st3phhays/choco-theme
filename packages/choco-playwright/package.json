@@ -1,0 +1,28 @@
+{
+  "name": "choco-playwright",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "A global set of dependencies to be used on Chocolatey Software Playwright projects.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chocolatey/choco-playwright.git"
+  },
+  "author": "Chocolatey Software (https://chocolatey.org/)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/chocolatey/choco-playwright/issues"
+  },
+  "homepage": "https://github.com/chocolatey/choco-playwright#readme",
+  "scripts": {
+    "audit": "yarn npm audit --all --recursive",
+    "test": "playwright test"
+  },
+  "dependencies": {
+    "@axe-core/playwright": "^4.10.1",
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.15.3",
+    "axe-html-reporter": "^2.2.11",
+    "eslint-plugin-playwright": "^1.4.1",
+    "typescript": "^5.6.2"
+  }
+}
