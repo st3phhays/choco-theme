@@ -36,6 +36,17 @@ export const htmlToMd = (contentId: string, exportName: string) => {
                 }
             });
 
+            // Keep images to retain styling
+            turndownService.addRule('keep', {
+                filter: ['img'],
+                replacement: (content, node) => {
+                    const image = node as HTMLImageElement;
+
+                    image.removeAttribute('data-pdfmake');
+                    return image.outerHTML;
+                }
+            });
+
             const markdownContent = turndownService.turndown(html);
             const blob = new Blob([markdownContent], { type: 'text/markdown' });
             const link = document.createElement('a');
