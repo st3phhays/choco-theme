@@ -108,7 +108,7 @@
     "flatpickr": "^4.6.13",
     "fuse.js": "^7.0.0",
     "globals": "^15.9.0",
-    "html-to-pdfmake": "^2.5.26",
+    "html-to-pdfmake": "^2.5.27",
     "jquery": "^3.7.1",
     "jquery-serializejson": "^3.2.1",
     "jquery-validation": "^1.21.0",
