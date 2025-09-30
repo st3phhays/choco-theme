@@ -2,7 +2,7 @@ import { copyCodeBlocks, removeLineBreaks, selectDeploymentMethodTab } from './u
 import { getCookie } from './util/get-cookie';
 
 (() => {
-    const packages = localStorage.packageList === undefined ? [] : JSON.parse(localStorage.packageList);
+    const packages = localStorage.scriptBuilder === undefined ? [] : JSON.parse(localStorage.scriptBuilder);
     const modalBuilder = document.getElementById('modalScriptBuilder');
     const modalBuilderInstance = bootstrap.Modal.getOrCreateInstance(modalBuilder, { keyboard: false, backdrop: 'static' });
     const deploymentMethods = document.querySelectorAll('[data-deployment-method]');
@@ -31,7 +31,7 @@ import { getCookie } from './util/get-cookie';
                 <div id="${packageIdentity}" class="d-flex flex-row align-items-start storage-row ${packageIdentity}">
                 <div class="ratio ratio-1x1 package-image-header">
                 <div class="d-flex flex-fill align-items-center justify-content-center package-icon">
-                <img class="package-image" src="${packageImagePath}${packageImage}" height="30" width="30" onerror="this.src='/Content/Images/packageDefaultIcon-50x50.png'">
+                <img class="package-image package-icon-sm" src="${packageImagePath}${packageImage}" height="30" width="30" />
                 </div>
                 </div>
                 <div class="mx-2">
@@ -53,7 +53,7 @@ import { getCookie } from './util/get-cookie';
 
     const findImagePath = imageTitle => {
         if (imageTitle.includes('packageDefaultIcon')) {
-            return '/Content/Images/';
+            return 'https://img.chocolatey.org/icons/';
         }
 
         return '/content/packageimages/';
@@ -85,7 +85,7 @@ import { getCookie } from './util/get-cookie';
         const notificationBadge = document.querySelector('.notification-badge-builder');
         const builderViewBtn = document.querySelector('.btn-view-builder');
 
-        notificationBadge.innerHTML = localStorage.packageList ? JSON.parse(localStorage.packageList).length : 0;
+        notificationBadge.innerHTML = localStorage.scriptBuilder ? JSON.parse(localStorage.scriptBuilder).length : 0;
 
         if (packages.length > 0) {
             builderViewBtn.classList.remove('d-none');
@@ -143,7 +143,7 @@ import { getCookie } from './util/get-cookie';
 
                     // Save to local storage
                     packages.push(`${packageTitle} , ${packageVersion} , ${packageImage} , ${packageValue}`);
-                    localStorage.packageList = JSON.stringify(packages);
+                    localStorage.scriptBuilder = JSON.stringify(packages);
                 };
 
                 const removePackages = (currentTitle, currentVersion, currentImage, currentValue) => {
@@ -176,7 +176,7 @@ import { getCookie } from './util/get-cookie';
                         }
                     }
 
-                    localStorage.packageList = JSON.stringify(packages);
+                    localStorage.scriptBuilder = JSON.stringify(packages);
                 };
 
                 // Determine if there is already a version of the package in their list

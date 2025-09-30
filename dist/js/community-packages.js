@@ -37304,6 +37304,32 @@ ${templateEnter}`;
     });
   })();
 
+  // js/src/package-default-icon.js
+  var iconSmallImage = document.querySelectorAll("img.package-icon-sm");
+  var iconLargeImage = document.querySelectorAll("img.package-icon-lg");
+  var iconSmallUrl = "https://img.chocolatey.org/icons/packageDefaultIcon-50x50.png";
+  var iconLargeUrl = "https://img.chocolatey.org/icons/packageDefaultIcon.png";
+  iconSmallImage.forEach((icon) => {
+    icon.onerror = () => {
+      console.error("Image failed to load:", icon.src);
+      if (icon.src === iconSmallUrl) {
+        return;
+      }
+      console.log("Reverting to default small icon:", iconSmallUrl);
+      icon.src = iconSmallUrl;
+    };
+  });
+  iconLargeImage.forEach((icon) => {
+    icon.onerror = () => {
+      console.error("Image failed to load:", icon.src);
+      if (icon.src === iconLargeUrl) {
+        return;
+      }
+      console.log("Reverting to default large icon:", iconLargeUrl);
+      icon.src = iconLargeUrl;
+    };
+  });
+
   // js/src/packages.js
   var import_jquery4 = __toESM(require_jquery());
   var import_easymde = __toESM(require_easymde());
@@ -37530,7 +37556,7 @@ ${templateEnter}`;
   // js/src/script-builder.js
   init_get_cookie();
   (() => {
-    const packages = localStorage.packageList === void 0 ? [] : JSON.parse(localStorage.packageList);
+    const packages = localStorage.scriptBuilder === void 0 ? [] : JSON.parse(localStorage.scriptBuilder);
     const modalBuilder = document.getElementById("modalScriptBuilder");
     const modalBuilderInstance = bootstrap.Modal.getOrCreateInstance(modalBuilder, { keyboard: false, backdrop: "static" });
     const deploymentMethods2 = document.querySelectorAll("[data-deployment-method]");
@@ -37555,7 +37581,7 @@ ${templateEnter}`;
                 <div id="${packageIdentity}" class="d-flex flex-row align-items-start storage-row ${packageIdentity}">
                 <div class="ratio ratio-1x1 package-image-header">
                 <div class="d-flex flex-fill align-items-center justify-content-center package-icon">
-                <img class="package-image" src="${packageImagePath}${packageImage}" height="30" width="30" onerror="this.src='/Content/Images/packageDefaultIcon-50x50.png'">
+                <img class="package-image package-icon-sm" src="${packageImagePath}${packageImage}" height="30" width="30" />
                 </div>
                 </div>
                 <div class="mx-2">
@@ -37574,7 +37600,7 @@ ${templateEnter}`;
     };
     const findImagePath = (imageTitle) => {
       if (imageTitle.includes("packageDefaultIcon")) {
-        return "/Content/Images/";
+        return "https://img.chocolatey.org/icons/";
       }
       return "/content/packageimages/";
     };
@@ -37598,7 +37624,7 @@ ${templateEnter}`;
     const countPackages = () => {
       const notificationBadge = document.querySelector(".notification-badge-builder");
       const builderViewBtn = document.querySelector(".btn-view-builder");
-      notificationBadge.innerHTML = localStorage.packageList ? JSON.parse(localStorage.packageList).length : 0;
+      notificationBadge.innerHTML = localStorage.scriptBuilder ? JSON.parse(localStorage.scriptBuilder).length : 0;
       if (packages.length > 0) {
         builderViewBtn.classList.remove("d-none");
       } else {
@@ -37639,7 +37665,7 @@ ${templateEnter}`;
             appendPackage(packageTitle, packageValue, packageIdentity, packageVersion, packageUrl, packageImage, imageUrl);
             addOrRemoveButtons();
             packages.push(`${packageTitle} , ${packageVersion} , ${packageImage} , ${packageValue}`);
-            localStorage.packageList = JSON.stringify(packages);
+            localStorage.scriptBuilder = JSON.stringify(packages);
           };
           const removePackages = (currentTitle, currentVersion, currentImage, currentValue) => {
             if (currentTitle) {
@@ -37663,7 +37689,7 @@ ${templateEnter}`;
                 packages.splice(i, 1);
               }
             }
-            localStorage.packageList = JSON.stringify(packages);
+            localStorage.scriptBuilder = JSON.stringify(packages);
           };
           if (!el.classList.contains("btn-builder-version")) {
             for (const i in packages) {

@@ -18890,6 +18890,32 @@ ${templateEnter}`;
       });
     });
   })();
+
+  // js/src/package-default-icon.js
+  var iconSmallImage = document.querySelectorAll("img.package-icon-sm");
+  var iconLargeImage = document.querySelectorAll("img.package-icon-lg");
+  var iconSmallUrl = "https://img.chocolatey.org/icons/packageDefaultIcon-50x50.png";
+  var iconLargeUrl = "https://img.chocolatey.org/icons/packageDefaultIcon.png";
+  iconSmallImage.forEach((icon) => {
+    icon.onerror = () => {
+      console.error("Image failed to load:", icon.src);
+      if (icon.src === iconSmallUrl) {
+        return;
+      }
+      console.log("Reverting to default small icon:", iconSmallUrl);
+      icon.src = iconSmallUrl;
+    };
+  });
+  iconLargeImage.forEach((icon) => {
+    icon.onerror = () => {
+      console.error("Image failed to load:", icon.src);
+      if (icon.src === iconLargeUrl) {
+        return;
+      }
+      console.log("Reverting to default large icon:", iconLargeUrl);
+      icon.src = iconLargeUrl;
+    };
+  });
 })();
 /**
  * Prism: Lightweight, robust, elegant syntax highlighting

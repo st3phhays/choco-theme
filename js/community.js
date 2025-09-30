@@ -26,3 +26,4 @@ import './src/ts/tab-multiples.ts';
 import './src/terminal.js';
 import './src/tooltips.js';
 import './src/theme-toggle.js';
+import './src/package-default-icon.js';
