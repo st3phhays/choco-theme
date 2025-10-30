@@ -28,8 +28,8 @@ Chocolatey uses a number of 3rd party components. Their details are below.
     * [bootstrap@5.3.8](#bootstrap538)
     * [clipboard@2.0.11](#clipboard2011)
     * [cropperjs@1.6.2](#cropperjs162)
-    * [datatables.net-bs5@2.3.4](#datatablesnet-bs5234)
-    * [datatables.net-dt@2.3.4](#datatablesnet-dt234)
+    * [datatables.net-bs5@2.3.5](#datatablesnet-bs5235)
+    * [datatables.net-dt@2.3.5](#datatablesnet-dt235)
     * [jquery@3.7.1](#jquery371)
     * [jquery-serializejson@3.2.1](#jquery-serializejson321)
     * [jquery-validation@1.21.0](#jquery-validation1210)
@@ -775,13 +775,13 @@ https://www.apache.org/licenses/LICENSE-2.0
 
 [cropperjs](https://github.com/fengyuanchen/cropperjs) - [License terms.](https://github.com/fengyuanchen/cropperjs/blob/da3f6f7d4b9c29c7234ddf114c71a27a269855f0/LICENSE)
 
-#### datatables.net-bs5@2.3.4
+#### datatables.net-bs5@2.3.5
 
-[datatables.net-bs5](https://github.com/DataTables/Dist-DataTables-Bootstrap5) - [License terms.](https://github.com/DataTables/Dist-DataTables-Bootstrap5/blob/b62a7995d443d6b9116cc7c29c01ae44105b6420/License.txt)
+[datatables.net-bs5](https://github.com/DataTables/Dist-DataTables-Bootstrap5) - [License terms.](https://github.com/DataTables/Dist-DataTables-Bootstrap5/blob/89b79812ed1f34c9fec44dafcc6a1975529a5147/License.txt)
 
-#### datatables.net-dt@2.3.4
+#### datatables.net-dt@2.3.5
 
-[datatables.net-dt](https://github.com/DataTables/Dist-DataTables-DataTables) - [License terms.](https://github.com/DataTables/Dist-DataTables-DataTables/blob/d85363c92a63a1eb266770db269477df2a9f8b25/License.txt)
+[datatables.net-dt](https://github.com/DataTables/Dist-DataTables-DataTables) - [License terms.](https://github.com/DataTables/Dist-DataTables-DataTables/blob/73712a244e65d0e002773ba8ee95fe9eeaf29ca1/License.txt)
 
 #### jquery@3.7.1
 
