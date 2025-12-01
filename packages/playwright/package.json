@@ -5,6 +5,10 @@
     "author": "Chocolatey Software (https://chocolatey.org/)",
     "homepage": "https://github.com/chocolatey/choco-theme/blob/main/packages/playwright#readme",
     "license": "Apache-2.0",
+    "devDependencies": {
+        "jsdoc": "^4.0.5",
+        "typedoc": "^0.28.14"
+    },
     "dependencies": {
         "@axe-core/playwright": "^4.10.1",
         "@playwright/test": "^1.52.0",
