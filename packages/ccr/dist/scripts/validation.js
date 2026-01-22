@@ -6592,6 +6592,7 @@
             errorElement: "label",
             focusCleanup: false,
             focusInvalid: true,
+            ariaDescribedByCleanup: false,
             errorContainer: $2([]),
             errorLabelContainer: $2([]),
             onsubmit: true,
@@ -6779,7 +6780,7 @@
                     if (testgroup === group && name !== checkElement.name) {
                       cleanElement = v.validationTargetFor(v.clean(v.findByName(name)));
                       if (cleanElement && cleanElement.name in v.invalid) {
-                        v.currentElements.push(cleanElement);
+                        v.currentElements.pushStack(cleanElement);
                         result = v.check(cleanElement) && result;
                       }
                     }
@@ -6864,9 +6865,50 @@
             hideErrors: function() {
               this.hideThese(this.toHide);
             },
+            addErrorAriaDescribedBy: function(element, error, updateGroupMembers) {
+              updateGroupMembers = updateGroupMembers === void 0 ? false : updateGroupMembers;
+              var errorID, v, group, describedBy = $2(element).attr("aria-describedby");
+              errorID = error.attr("id");
+              if (!describedBy) {
+                describedBy = errorID;
+              } else if (!describedBy.match(new RegExp("\\b" + this.escapeCssMeta(errorID) + "\\b"))) {
+                describedBy += " " + errorID;
+              }
+              $2(element).attr("aria-describedby", describedBy);
+              if (updateGroupMembers) {
+                group = this.groups[element.name];
+                if (group) {
+                  v = this;
+                  $2.each(v.groups, function(name, testgroup) {
+                    if (testgroup === group) {
+                      v.addErrorAriaDescribedBy($2("[name='" + v.escapeCssMeta(name) + "']", v.currentForm), error, false);
+                    }
+                  });
+                }
+              }
+            },
+            removeErrorAriaDescribedBy: function(element, error) {
+              var describedBy = $2(element).attr("aria-describedby"), describedByIds = describedBy.split(" "), errorID = error.attr("id"), ind = describedByIds.indexOf(errorID);
+              if (ind > -1) {
+                describedByIds.splice(ind, 1);
+              }
+              if (describedByIds.length) {
+                $2(element).attr("aria-describedby", describedByIds.join(" "));
+              } else {
+                $2(element).removeAttr("aria-describedby");
+              }
+            },
             hideThese: function(errors) {
-              errors.not(this.containers).text("");
-              this.addWrapper(errors).hide();
+              for (var i = 0; errors[i]; i++) {
+                var error = $2(errors[i]), errorID = error.attr("id") ? this.escapeCssMeta(error.attr("id")) : void 0, element = errorID ? this.elements().filter('[aria-describedby~="' + errorID + '"]') : [];
+                if (this.settings.ariaDescribedByCleanup && element.length) {
+                  this.removeErrorAriaDescribedBy(element, error);
+                }
+                if (!error.is(this.containers)) {
+                  error.text("");
+                }
+                this.addWrapper(error).hide();
+              }
             },
             valid: function() {
               return this.size() === 0;
@@ -6889,8 +6931,14 @@
               }).length === 1 && lastActive;
             },
             elements: function() {
-              var validator = this, rulesCache = {}, selectors = ["input", "select", "textarea", "[contenteditable]"];
-              return $2(this.currentForm).find(selectors.concat(this.settings.customElements).join(", ")).not(":submit, :reset, :image, :disabled").not(this.settings.ignore).filter(function() {
+              var validator = this, rulesCache = {}, selectors = ["input", "select", "textarea", "[contenteditable]"], formId = this.currentForm.id, elements;
+              elements = $2(this.currentForm).find(selectors.concat(this.settings.customElements).join(", ")).not(":submit, :reset, :image, :disabled").not(this.settings.ignore);
+              if (formId) {
+                elements = elements.add(
+                  $2(selectors.concat(this.settings.customElements).join(", ")).filter("[form='" + validator.escapeCssMeta(formId) + "']").not(":submit, :reset, :image, :disabled").not(this.settings.ignore)
+                );
+              }
+              return elements.filter(function() {
                 var name = this.name || $2(this).attr("name");
                 var isContentEditable = typeof $2(this).attr("contenteditable") !== "undefined" && $2(this).attr("contenteditable") !== "false";
                 if (!name && validator.settings.debug && window.console) {
@@ -7116,8 +7164,11 @@
               });
             },
             showLabel: function(element, message) {
-              var place, group, errorID, v, error = this.errorsFor(element), elementID = this.idOrName(element), describedBy = $2(element).attr("aria-describedby");
+              var place, error = this.errorsFor(element), elementID = this.idOrName(element), describedBy = $2(element).attr("aria-describedby");
               if (error.length) {
+                if (error.closest("label[for='" + this.escapeCssMeta(elementID) + "']").length === 0 && (describedBy === void 0 || describedBy.split(" ").indexOf(error.attr("id")) === -1)) {
+                  this.addErrorAriaDescribedBy(element, error, true);
+                }
                 error.removeClass(this.settings.validClass).addClass(this.settings.errorClass);
                 if (this.settings && this.settings.escapeHtml) {
                   error.text(message || "");
@@ -7145,22 +7196,7 @@
                 if (error.is("label")) {
                   error.attr("for", elementID);
                 } else if (error.parents("label[for='" + this.escapeCssMeta(elementID) + "']").length === 0) {
-                  errorID = error.attr("id");
-                  if (!describedBy) {
-                    describedBy = errorID;
-                  } else if (!describedBy.match(new RegExp("\\b" + this.escapeCssMeta(errorID) + "\\b"))) {
-                    describedBy += " " + errorID;
-                  }
-                  $2(element).attr("aria-describedby", describedBy);
-                  group = this.groups[element.name];
-                  if (group) {
-                    v = this;
-                    $2.each(v.groups, function(name, testgroup) {
-                      if (testgroup === group) {
-                        $2("[name='" + v.escapeCssMeta(name) + "']", v.currentForm).attr("aria-describedby", error.attr("id"));
-                      }
-                    });
-                  }
+                  this.addErrorAriaDescribedBy(element, error, true);
                 }
               }
               if (!message && this.settings.success) {
@@ -7178,6 +7214,7 @@
               if (describer) {
                 selector = selector + ", #" + this.escapeCssMeta(describer).replace(/\s+/g, ", #");
               }
+              selector = selector + ", #" + name + "-error";
               return this.errors().filter(selector);
             },
             // See https://api.jquery.com/category/selectors/, for CSS
@@ -7202,7 +7239,13 @@
               return /radio|checkbox/i.test(element.type);
             },
             findByName: function(name) {
-              return $2(this.currentForm).find("[name='" + this.escapeCssMeta(name) + "']");
+              var formId = this.currentForm.id, selector = "[name='" + this.escapeCssMeta(name) + "']", elements = $2(this.currentForm).find(selector);
+              if (formId) {
+                elements = elements.add(
+                  $2(selector).filter("[form='" + this.escapeCssMeta(formId) + "']")
+                );
+              }
+              return elements;
             },
             getLength: function(value, element) {
               switch (element.nodeName.toLowerCase()) {
@@ -7933,11 +7976,11 @@ jquery/dist/jquery.js:
 
 jquery-validation/dist/jquery.validate.js:
   (*!
-   * jQuery Validation Plugin v1.21.0
+   * jQuery Validation Plugin v1.22.0
    *
    * https://jqueryvalidation.org/
    *
-   * Copyright (c) 2024 Jörn Zaefferer
+   * Copyright (c) 2026 Jörn Zaefferer
    * Released under the MIT license
    *)
 
